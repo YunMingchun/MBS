@@ -1,0 +1,96 @@
+//
+   Created by ymc on 12/19/15.
+
+doctype html
+html
+   head
+      title= title
+      meta(http-equiv="content-type", content="text/html; charset=UTF-8")
+      link(rel='stylesheet', href='/stylesheets/other/christmas.css')
+   body
+      #mainDiv
+         #content
+            #code
+               span.comments /**
+               br
+               span.space
+               span.comments * We are both Fudan SSers and programmers,
+               br
+               span.space
+               span.comments * so I write some code to celebrate our 1st anniversary.
+               br
+               span.space
+               span.comments */
+               br
+               | Boy i =&nbsp;
+               span.keyword new&nbsp;
+               | Boy(
+               span.string "Y"
+               | );
+               br
+               | Girl u =&nbsp;
+               span.keyword new&nbsp;
+               | Girl(
+               span.string "Hm"
+               | );
+               br
+               span.comments // Nov 2, 2010, I told you I love you.
+               br
+               | i.love(u);
+               br
+               span.comments // Luckily, you accepted and became my girlfriend eversince.
+               br
+               | u.accepted();
+               br
+               span.comments // Since then, I miss u every day.
+               br
+               | i.miss(u);
+               br
+               span.comments // And take care of u and our love.
+               br
+               | i.takeCareOf(u);
+               br
+               span.comments // You say that you won't be so easy to marry me.
+               br
+               span.comments // So I keep waiting and I have confidence that you will.
+               br
+               span.keyword boolean&nbsp;
+               | isHesitate =&nbsp;
+               span.keyword true
+               | ;
+               br
+               span.keyword while
+               | &nbsp;(isHesitate) {
+               br
+               span.placeholder
+               | i.waitFor(u);
+               br
+               span.placeholder
+               span.comments // I think it is an important decision
+               br
+               span.placeholder
+               span.comments // and you should think it over.
+               br
+               span.placeholder
+               | isHesitate = u.thinkOver();
+               br
+               | }
+               br
+               span.comments // After a romantic wedding, we will live happily ever after.
+               br
+               | i.marry(u);
+               br
+               | i.liveHappilyWith(u);
+               br
+            #loveHeart
+                canvas#garden
+                #words
+                    #messages Minyue, I have fallen in love with you for
+                        #elapseClock
+                    #loveu
+                        | Love u forever and ever.
+                        br
+                        div.signature - Y
+   script(type='text/javascript', src='/javascripts/third/jquery-1.4.2.min.js')
+   script(type='text/javascript', src='/javascripts/third/garden.min.js')
+   script(type='text/javascript', src='/javascripts/other/christmas.js')
