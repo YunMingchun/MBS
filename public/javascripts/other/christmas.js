@@ -27,7 +27,7 @@ $(function () {
     }, Garden.options.growSpeed);
 });
 
-$(window).resize(function() {
+$(window).resize(function () {
     var newWidth = $(window).width();
     var newHeight = $(window).height();
     if (newWidth != clientWidth && newHeight != clientHeight) {
@@ -38,7 +38,7 @@ $(window).resize(function() {
 function getHeartPoint(angle) {
     var t = angle / Math.PI;
     var x = 19.5 * (16 * Math.pow(Math.sin(t), 3));
-    var y = - 20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+    var y = -20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
     return new Array(offsetX + x, offsetY + y);
 }
 
@@ -70,12 +70,12 @@ function startHeartAnimation() {
     }, interval);
 }
 
-(function($) {
-    $.fn.typewriter = function() {
-        this.each(function() {
+(function ($) {
+    $.fn.typewriter = function (callback) {
+        this.each(function () {
             var $ele = $(this), str = $ele.html(), progress = 0;
             $ele.html('');
-            var timer = setInterval(function() {
+            var timer = setInterval(function () {
                 var current = str.substr(progress, 1);
                 if (current == '<') {
                     progress = str.indexOf('>', progress) + 1;
@@ -85,6 +85,7 @@ function startHeartAnimation() {
                 $ele.html(str.substring(0, progress) + (progress & 1 ? '_' : ''));
                 if (progress >= str.length) {
                     clearInterval(timer);
+                    callback();
                 }
             }, 75);
         });
@@ -92,7 +93,7 @@ function startHeartAnimation() {
     };
 })(jQuery);
 
-function timeElapse(date){
+function timeElapse(date) {
     var current = Date();
     var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
     var days = Math.floor(seconds / (3600 * 24));
@@ -116,7 +117,7 @@ function timeElapse(date){
 
 function showMessages() {
     adjustWordsPosition();
-    $('#messages').fadeIn(5000, function() {
+    $('#messages').fadeIn(5000, function () {
         showLoveU();
     });
 }
@@ -138,8 +139,8 @@ function showLoveU() {
 var offsetX = $("#loveHeart").width() / 2;
 var offsetY = $("#loveHeart").height() / 2 - 55;
 var together = new Date();
-together.setFullYear(2010, 10, 2);
-together.setHours(20);
+together.setFullYear(2015, 11, 11);
+together.setHours(0);
 together.setMinutes(0);
 together.setSeconds(0);
 together.setMilliseconds(0);
@@ -150,19 +151,26 @@ if (!document.createElement('canvas').getContext) {
     msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
     document.body.appendChild(msg);
     $("#code").css("display", "none")
-    $("#copyright").css("position", "absolute");
-    $("#copyright").css("bottom", "10px");
     document.execCommand("stop");
 } else {
-    setTimeout(function () {
-        startHeartAnimation();
-    }, 5000);
+    //setTimeout(function () {
+    //    startHeartAnimation();
+    //}, 5000);
 
-    timeElapse(together);
-    setInterval(function () {
-        timeElapse(together);
-    }, 500);
+    //timeElapse(together);
+    //setInterval(function () {
+    //    timeElapse(together);
+    //}, 500);
 
     adjustCodePosition();
-    $("#code").typewriter();
+    $("#code").typewriter(function () {
+        setTimeout(function () {
+            startHeartAnimation();
+        }, 1000);
+
+        timeElapse(together);
+        setInterval(function () {
+            timeElapse(together);
+        }, 500);
+    });
 }

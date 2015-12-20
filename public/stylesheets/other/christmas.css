@@ -3,7 +3,7 @@ body {
     padding: 0;
     background: #ffe;
     font-size: 12px;
-    overflow: auto
+    overflow: auto;
 }
 
 #mainDiv {
@@ -14,7 +14,7 @@ body {
 #loveHeart {
     float: left;
     width: 670px;
-    height: 625px
+    height: 625px;
 }
 
 #garden {
@@ -66,11 +66,13 @@ body {
 
 #code {
     float: left;
-    width: 440px;
-    height: 400px;
+    /*width: 440px;*/
+    /*height: 400px;*/
+    width: 500px;
+    height: auto;
     color: #333;
     font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
-    font-size: 12px
+    font-size: 12px;
 }
 
 #code .string {
