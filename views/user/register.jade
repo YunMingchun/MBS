@@ -1,0 +1,20 @@
+//
+   Created by ymc on 1/26/16.
+
+extends ../template.jade
+
+block links
+
+block body
+   div#register(ng-controller='registerCtrl')
+      div#register-form
+         div#userName.form-control
+            input(type='text' placeholder='请输入用户名' ng-model='userName')
+         div#password.form-control
+            input(type='password' placeholder='请输入密码' ng-model='password')
+         div#repasswd.form-control
+            input(type='password' placeholder='请再次输入密码' ng-model='repasswd')
+      div.btns
+         a.btn.register-btn(ng-click='signup()') 注册
+         a.btn.cancel-btn(ng-click='back2up()') 返回
+block scripts
