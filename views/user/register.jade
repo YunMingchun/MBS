@@ -8,13 +8,15 @@ block links
 block body
    div#register(ng-controller='registerCtrl')
       div#register-form
-         div#userName.form-control
-            input(type='text' placeholder='请输入用户名' ng-model='userName')
-         div#password.form-control
-            input(type='password' placeholder='请输入密码' ng-model='password')
-         div#repasswd.form-control
-            input(type='password' placeholder='请再次输入密码' ng-model='repasswd')
+         div#userName.form-group
+            input.form-control(type='text' placeholder='请输入用户名' ng-model='userName')
+         div#password.form-group
+            input.form-control(type='password' placeholder='请输入密码' ng-model='password')
+         div#repasswd.form-group
+            input.form-control(type='password' placeholder='请再次输入密码' ng-model='repasswd')
+         div#email.form-group
+            input.form-control(type='email' placeholder='请输入邮箱' ng-model='email')
       div.btns
-         a.btn.register-btn(ng-click='signup()') 注册
+         a.btn.register-btn(ng-click='register()') 注册
          a.btn.cancel-btn(ng-click='back2up()') 返回
 block scripts

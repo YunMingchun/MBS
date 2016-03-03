@@ -4,12 +4,14 @@
 doctype html
 html(lang='en' ng-app='myboys')
    head
+      base(href='/')
       title= title
       link(rel='stylesheet', href='/stylesheets/global.css')
       block links
    body
       block body
    script(src='/javascripts/third/angular.js')
+   script(src='/javascripts/third/angular-cookies.js')
    script(src='/javascripts/services.js')
    script(src='/javascripts/controllers.js')
    block scripts

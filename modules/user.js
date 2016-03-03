@@ -3,21 +3,38 @@
  */
 
 var db = require('./db');
+var crypto = require('crypto');
+var md5 = crypto.createHash('md5');
 
-function User (user) {
+function User(user) {
     this.userName = user.userName;
     this.password = user.password;
+    this.email = user.email;
 };
 
 User.create = function (user, callback) {
-    db.open(function(err, db){
-        if(!err){
+    db.open(function (err, db) {
+        if (!err) {
             db.collection('users').insertOne({
                 'userName': user.userName,
-                'password': user.password
-            }, function(err, resp){
-                if(!err){
+                'password': md5.update(user.password).digest('hex'),
+                'email': user.email
+            }, function (err, resp) {
+                if (!err) {
                     callback(resp.insertedId);
+                    db.close();
+                }
+            });
+        }
+    });
+};
+
+User.findByName = function (userName, callback) {
+    db.open(function (err, db) {
+        if (!err) {
+            db.collection('users').find({userName: userName}).toArray(function (err, resp) {
+                if (!err) {
+                    callback(resp[0]);
                     db.close();
                 }
             });
