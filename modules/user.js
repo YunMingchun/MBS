@@ -4,7 +4,6 @@
 
 var db = require('./db');
 var crypto = require('crypto');
-var md5 = crypto.createHash('md5');
 
 function User(user) {
     this.userName = user.userName;
@@ -17,7 +16,7 @@ User.create = function (user, callback) {
         if (!err) {
             db.collection('users').insertOne({
                 'userName': user.userName,
-                'password': md5.update(user.password).digest('hex'),
+                'password': crypto.createHash('md5').update(user.password).digest('hex'),
                 'email': user.email
             }, function (err, resp) {
                 if (!err) {

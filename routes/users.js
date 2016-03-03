@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var User = require('../modules/user');
 var crypto = require('crypto');
-var md5 = crypto.createHash('md5');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -42,7 +41,7 @@ router.get('/api/login', function (req, res, next) {
 
     User.findByName(user.userName, function (resp) {
         if (resp) {
-            if (md5.update(user.password).digest('hex') == resp.password) {
+            if (crypto.createHash('md5').update(user.password).digest('hex') == resp.password) {
                 res.json({
                     status: 0,
                     userId: resp._id

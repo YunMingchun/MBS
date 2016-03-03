@@ -2,7 +2,7 @@
  * Created by ymc on 1/26/16.
  */
 
-myboys.controller('registerCtrl', function ($scope, $http, $location) {
+myboys.controller('registerCtrl', function ($scope, $http, $location, $cookies) {
     $scope.userName = '';
     $scope.password = '';
     $scope.repasswd = '';
@@ -21,7 +21,10 @@ myboys.controller('registerCtrl', function ($scope, $http, $location) {
             email: $scope.email
         }).success(function (resp) {
             if (resp.status == 0) {
+                $cookies.userName = $scope.userName;
+                $cookies.userId = resp.userId;
 
+                window.location.href = '/home';
             }
             else {
             }
