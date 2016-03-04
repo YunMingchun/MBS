@@ -1,9 +1,17 @@
-/**
- * Created by ymc on 1/26/16.
- */
+var myboys = angular.module('myboys', ['ngCookies', 'ngRoute', 'ngSanitize', 'ng.ueditor']);
 
-var myboys = angular.module('myboys', ['ngCookies']);
-
-myboys.config(['$locationProvider', function($locationProvider) {
+myboys.config(['$locationProvider', function ($locationProvider) {
     $locationProvider.html5Mode(true);
+}]);
+
+myboys.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.
+        when('/blog/add', {
+            templateUrl: 'blogs/add',
+            controller: blogAddCtrl
+        }).
+        when('/blog/list', {
+            templateUrl: 'blogs/list',
+            controller: blogListCtrl
+        });
 }]);

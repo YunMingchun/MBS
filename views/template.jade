@@ -1,17 +1,24 @@
-//
-   Created by ymc on 1/26/16.
-
 doctype html
 html(lang='en' ng-app='myboys')
-   head
-      base(href='/')
-      title= title
-      link(rel='stylesheet', href='/stylesheets/global.css')
-      block links
-   body
-      block body
-   script(src='/javascripts/third/angular.js')
-   script(src='/javascripts/third/angular-cookies.js')
-   script(src='/javascripts/services.js')
-   script(src='/javascripts/controllers.js')
-   block scripts
+    head
+        base(href='/')
+        meta(http-equiv='Content-Type',content='text/html;charset=utf-8')
+        title= title
+        link(rel='stylesheet', href='/stylesheets/global.css')
+        block links
+    body
+        block body
+    //Angular
+    script(src='/javascripts/third/angular.js')
+    script(src='/javascripts/third/angular-cookies.js')
+    script(src='/javascripts/third/angular-route.js')
+    script(src='/javascripts/third/angular-sanitize.js')
+    script(src='/javascripts/third/angular-ueditor.js')
+    //Controller
+    script(src='/javascripts/services.js')
+    script(src='/javascripts/directives.js')
+    script(src='/javascripts/controllers.js')
+    //UEditor
+    script(src='http://ueditor.baidu.com/ueditor/ueditor.config.js')
+    script(src='http://ueditor.baidu.com/ueditor/ueditor.all.js')
+    block scripts

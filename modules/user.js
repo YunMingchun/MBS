@@ -1,7 +1,3 @@
-/**
- * Created by ymc on 1/26/16.
- */
-
 var db = require('./db');
 var crypto = require('crypto');
 

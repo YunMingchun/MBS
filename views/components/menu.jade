@@ -1,0 +1,15 @@
+div#directive-menu
+    ul#menu
+        li.user-profile
+            | 欢迎你，
+            span(ng-bind='userName')
+        li.menu-item(ng-repeat='menu_item in menu_items'
+        ng-class='{active: $index == current_menu_item}'
+        ng-click='displayMenuItem($index)')
+            a(ng-bind='menu_item.name')
+    ul#sub-menu
+        li.sub-menu-item(ng-repeat='sub_menu_item in sub_menu_items'
+        ng-class='{active: $index == current_sub_menu_item}'
+        ng-click='displaySubMenuItem($index)')
+            a(ng-bind='sub_menu_item.name' ng-href='{{sub_menu_item.url}}')
+    div.clear

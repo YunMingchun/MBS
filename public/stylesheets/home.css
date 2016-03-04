@@ -1,0 +1,79 @@
+#directive-menu {
+    width: 270px;
+    float: left;
+}
+
+#menu > .menu-item, #sub-menu > .sub-menu-item {
+    cursor: pointer;
+    text-align: center;
+    padding: 5px 0px;
+
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#menu {
+    float: left;
+    background-color: rgb(35, 31, 32);
+    color: #ffffff;
+    width: 150px;
+    font-size: 16px;
+    padding: 15px 0px;
+}
+
+#menu > .user-profile {
+    text-align: center;
+    padding: 10px 0px;
+}
+
+#menu > .menu-item.active {
+    background-color: #555555;
+    border-left: 5px solid #00B7FF;
+    color: #00B7FF;
+}
+
+#sub-menu {
+    float: left;
+    background-color: rgb(207, 191, 140);
+    width: 120px;
+    font-size: 14px;
+    padding: 10px 0px;
+}
+
+#sub-menu > .sub-menu-item.active {
+    background-color: #555555;
+    border-left: 5px solid #ffffff;
+    color: #ffffff;
+}
+
+#body {
+    float: left;
+    width: calc(100% - 270px);
+    height: 100%;
+    padding: 15px 10px;
+    box-sizing: border-box;
+}
+
+#add > .form-group {
+    width: 30%;
+}
+
+.tags {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+span.tag {
+    display: block;
+    float: left;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    padding: 1.5px 6px;
+    font-size: 12px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.ueditor {
+    margin-bottom: 20px;
+}

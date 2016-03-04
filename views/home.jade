@@ -1,8 +1,11 @@
-//
-   Created by ymc on 3/3/16.
-
 extends template
 
 block links
+    link(rel='stylesheet', href='/stylesheets/home.css')
 block body
+    div#home(ng-controller='homeCtrl')
+        menu
+        div#body
+            ng-view
+        div.clear
 block scripts
