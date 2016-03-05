@@ -7,6 +7,7 @@ function Post(post) {
     this.tags = post.tags;
     this.content = post.content;
     this.isPublished = post.isPublished;
+    this.createTime = post.createTime;
 };
 
 Post.create = function (post, callback) {
@@ -18,10 +19,24 @@ Post.create = function (post, callback) {
                 'privacy': post.privacy,
                 'tags': post.tags,
                 'content': post.content,
-                'isPublished': post.isPublished
+                'isPublished': post.isPublished,
+                'createTime': post.createTime
             }, function (err, resp) {
                 if (!err) {
                     callback(resp.insertedId);
+                    db.close();
+                }
+            });
+        }
+    });
+};
+
+Post.listByUserId = function (userId, callback) {
+    db.open(function (err, db) {
+        if (!err) {
+            db.collection('posts').find({'userId': userId}).toArray(function (err, resp) {
+                if (!err) {
+                    callback(resp);
                     db.close();
                 }
             });

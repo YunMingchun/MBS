@@ -60,3 +60,7 @@ select.form-control {
 div.clear {
     clear: both;
 }
+
+thead {
+    text-align: center;
+}

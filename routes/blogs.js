@@ -21,7 +21,8 @@ router.post('/api/add', function (req, res, next) {
         privacy: req.body.privacy,
         tags: req.body.tags,
         content: req.body.content,
-        isPublished: req.body.isPublished
+        isPublished: req.body.isPublished,
+        createTime: req.body.createTime
     };
 
     Post.create(post, function (resp) {
@@ -30,6 +31,16 @@ router.post('/api/add', function (req, res, next) {
             postId: resp
         });
     });
+});
+
+router.get('/api/list', function (req, res, next) {
+    var userId = req.query.userId;
+    Post.listByUserId(userId, function (resp) {
+        res.json({
+            status: 0,
+            posts: resp
+        });
+    })
 });
 
 module.exports = router;

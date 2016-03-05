@@ -8,6 +8,7 @@ myboys.directive('menu', function () {
             $scope.menu_items = [
                 {
                     name: '博客',
+                    path: 'blog',
                     sub_menu_items: [
                         {name: '推荐日志'},
                         {name: '热门日志'},
@@ -31,19 +32,28 @@ myboys.directive('menu', function () {
                     ]
                 }
             ];
-            $scope.sub_menu_items = $scope.menu_items[0].sub_menu_items;
-            $scope.current_menu_item = $cookies.current_menu_item ? $cookies.current_menu_item : 0;
-            $scope.current_sub_menu_item = $cookies.current_sub_menu_item ? $cookies.current_sub_menu_item : 0;
+
+
+            angular.forEach($scope.menu_items, function (data, index, array) {
+                if ($location.path().indexOf(data.path) >= 0) {
+                    $scope.current_menu_item = index;
+                    $scope.sub_menu_items = $scope.menu_items[index].sub_menu_items;
+                }
+            });
+            angular.forEach($scope.sub_menu_items, function (data, index, array) {
+                if ($location.path() == data.url) {
+                    $scope.current_sub_menu_item = index;
+                }
+            });
 
             $scope.displayMenuItem = function (index) {
                 $scope.current_menu_item = index;
                 $scope.sub_menu_items = $scope.menu_items[index].sub_menu_items;
-                $scope.current_sub_menu_item = 0;
-                $cookies.current_menu_item = index;
+                $location.path($scope.sub_menu_items[0].url);
             };
             $scope.displaySubMenuItem = function (index) {
                 $scope.current_sub_menu_item = index;
-                $cookies.current_sub_menu_item = index;
+                $location.path($scope.sub_menu_items[index].url);
             };
         }
     }

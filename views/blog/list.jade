@@ -1,2 +1,14 @@
-div#blog-list
-   | Hello World! List
+table#blog-list
+   thead
+      tr
+         td 标题
+         td 创建时间
+         td 可见性
+         td 标签
+   tbody
+      tr.blog-item(ng-repeat='post in posts track by post._id')
+         td.title(ng-bind='post.title')
+         td.createTime(ng-bind='post.createTime')
+         td.privacy(ng-bind='post.privacy')
+         td.tags(ng-bind='post.tags')
+

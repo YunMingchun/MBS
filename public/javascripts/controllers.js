@@ -19,8 +19,7 @@ myboys.controller('registerCtrl', function ($scope, $http, $location, $cookies) 
             if (resp.status == 0) {
                 $cookies.userName = $scope.userName;
                 $cookies.userId = resp.userId;
-
-                window.location.href = '/';
+                $location.path('/');
             }
             else {
             }
@@ -29,10 +28,10 @@ myboys.controller('registerCtrl', function ($scope, $http, $location, $cookies) 
     $scope.back2up = function () {
         var preUrl = decodeURIComponent($location.search()['preUrl']);
         if (preUrl != 'undefined') {
-            window.location.href = preUrl;
+            $location.path();
         }
         else {
-            window.location.href = '/login';
+            $location.path('/login');
         }
     }
 });
@@ -54,8 +53,7 @@ myboys.controller('loginCtrl', function ($scope, $http, $location, $cookies) {
             if (resp.status == 0) {
                 $cookies.userName = $scope.userName;
                 $cookies.userId = resp.userId;
-
-                window.location.href = '/';
+                $location.path('/');
             }
             else {
             }
@@ -63,14 +61,14 @@ myboys.controller('loginCtrl', function ($scope, $http, $location, $cookies) {
 
     };
     $scope.signup = function () {
-        window.location.href = '/register?preUrl=' + encodeURIComponent($location.absUrl());
+        $location.path('register').search({preUrl: encodeURIComponent($location.absUrl())});
     }
 });
 
 myboys.controller('homeCtrl', function ($scope, $cookies, $location) {
     $scope.userId = $cookies.userId;
     if (!$scope.userId) {
-        window.location.href = '/login';
+        $location.path('/login');
     }
 });
 
@@ -108,13 +106,20 @@ function blogAddCtrl($scope, $http) {
             return;
         }
 
+        var time = new Date();
+        var year = time.getFullYear();
+        var month = pad0(time.getMonth() + 1);
+        var day = pad0(time.getDate());
+        var hour = pad0(time.getHours());
+
         $http.post('/blogs/api/add', {
             userId: $scope.userId,
             title: $scope.title,
             privacy: privacy,
             tags: tags,
             content: $scope.blogContent,
-            isPublished: 1
+            isPublished: 1,
+            createTime: year + '-' + month + '-' + day + ':' + hour
         }).success(function (resp) {
             window.location.href = '/blog/list';
         });
@@ -124,6 +129,21 @@ function blogAddCtrl($scope, $http) {
     }
 }
 
-function blogListCtrl($scope) {
+function blogListCtrl($scope, $http) {
+    $http.get('/blogs/api/list', {
+        params: {
+            userId: $scope.userId
+        }
+    }).success(function (resp) {
+        if (resp.status == 0) {
+            $scope.posts = resp.posts;
+        }
+    });
+}
 
+/* Helper */
+function pad0(num) {
+    if (num.toString().length == 1) {
+        return '0' + num;
+    }
 }
