@@ -6,6 +6,11 @@ myboys.config(['$locationProvider', function ($locationProvider) {
 
 myboys.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
+        when('/', {redirectTo: 'blog/recommend'}).
+        when('/blog/recommend', {
+            templateUrl: 'blogs/recommend',
+            controller: blogRecCtrl
+        }).
         when('/blog/add', {
             templateUrl: 'blogs/add',
             controller: blogAddCtrl
@@ -13,5 +18,41 @@ myboys.config(['$routeProvider', function ($routeProvider) {
         when('/blog/list', {
             templateUrl: 'blogs/list',
             controller: blogListCtrl
+        }).
+        when('/blog/post/:id', {
+            templateUrl: 'blogs/display',
+            controller: postCtrl
         });
 }]);
+
+myboys.filter('privacy', function () {
+    return function (input) {
+        if (input) {
+            switch (input) {
+                case 'public':
+                {
+                    return '公开';
+                    break;
+                }
+                case 'private':
+                {
+                    return '仅对自己可见';
+                    break;
+                }
+            }
+        }
+    }
+});
+
+myboys.filter('tags', function () {
+    return function (input) {
+        if (input) {
+            var tags = input.split(',');
+            var tagsHtml = '';
+            for (var i = 0; i < tags.length; i++) {
+                tagsHtml += '<span class="tag">' + tags[i] + '</span>'
+            }
+            return tagsHtml;
+        }
+    }
+});

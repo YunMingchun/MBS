@@ -1,0 +1,8 @@
+div#post
+    div.head
+        span.title(ng-bind='post.title')
+        span.createTime(ng-bind='post.createTime')
+        span.privacy(ng-bind='post.privacy | privacy')
+        div.tags(ng-bind-html='post.tags | tags')
+    div.body
+        div.content(ng-bind-html='post.content')

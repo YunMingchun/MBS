@@ -14,6 +14,10 @@ router.get('/list', function (req, res, next) {
     res.render('blog/list');
 });
 
+router.get('/display', function (req, res, next) {
+    res.render('blog/display');
+});
+
 router.post('/api/add', function (req, res, next) {
     var post = {
         userId: req.body.userId,
@@ -41,6 +45,16 @@ router.get('/api/list', function (req, res, next) {
             posts: resp
         });
     })
+});
+
+router.get('/api/display', function (req, res, next) {
+    var postId = req.query.postId;
+    Post.findById(postId, function (resp) {
+        res.json({
+            status: 0,
+            post: resp
+        });
+    });
 });
 
 module.exports = router;

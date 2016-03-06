@@ -77,3 +77,47 @@ span.tag {
 .ueditor {
     margin-bottom: 20px;
 }
+
+#blog-list {
+    border-collapse: separate;
+    border-spacing: 10px 5px;
+}
+
+#blog-list td.title {
+    cursor: pointer;
+}
+
+#blog-list td.privacy {
+    text-align: center;
+}
+
+#blog-list td.ops {
+    text-align: center;
+}
+
+#blog-list td.ops > span {
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+#post span.title {
+    display: block;
+    font-size: 18px;
+}
+
+#post span.createTime {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+#post span.privacy {
+    display: inline-block;
+    font-size: 14px;
+}
+
+#post div.tags {
+    margin-top: 5px;
+}

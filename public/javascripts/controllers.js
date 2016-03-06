@@ -19,7 +19,7 @@ myboys.controller('registerCtrl', function ($scope, $http, $location, $cookies) 
             if (resp.status == 0) {
                 $cookies.userName = $scope.userName;
                 $cookies.userId = resp.userId;
-                $location.path('/');
+                window.location.href = '/';
             }
             else {
             }
@@ -28,10 +28,10 @@ myboys.controller('registerCtrl', function ($scope, $http, $location, $cookies) 
     $scope.back2up = function () {
         var preUrl = decodeURIComponent($location.search()['preUrl']);
         if (preUrl != 'undefined') {
-            $location.path();
+            window.location.href = preUrl;
         }
         else {
-            $location.path('/login');
+            window.location.href = '/login';
         }
     }
 });
@@ -53,7 +53,7 @@ myboys.controller('loginCtrl', function ($scope, $http, $location, $cookies) {
             if (resp.status == 0) {
                 $cookies.userName = $scope.userName;
                 $cookies.userId = resp.userId;
-                $location.path('/');
+                window.location.href = '/';
             }
             else {
             }
@@ -61,14 +61,14 @@ myboys.controller('loginCtrl', function ($scope, $http, $location, $cookies) {
 
     };
     $scope.signup = function () {
-        $location.path('register').search({preUrl: encodeURIComponent($location.absUrl())});
+        window.location.href = 'register?preUrl=' + encodeURIComponent($location.absUrl());
     }
 });
 
 myboys.controller('homeCtrl', function ($scope, $cookies, $location) {
     $scope.userId = $cookies.userId;
     if (!$scope.userId) {
-        $location.path('/login');
+        window.location.href = '/login';
     }
 });
 
@@ -129,7 +129,7 @@ function blogAddCtrl($scope, $http) {
     }
 }
 
-function blogListCtrl($scope, $http) {
+function blogListCtrl($scope, $http, $location) {
     $http.get('/blogs/api/list', {
         params: {
             userId: $scope.userId
@@ -137,6 +137,30 @@ function blogListCtrl($scope, $http) {
     }).success(function (resp) {
         if (resp.status == 0) {
             $scope.posts = resp.posts;
+        }
+    });
+
+    $scope.displayPost = function (id) {
+        $location.path('/blog/post/' + id);
+    };
+    $scope.deletePost = function (id) {
+
+    };
+}
+
+function blogRecCtrl($scope) {
+}
+
+function postCtrl($scope, $routeParams, $http) {
+    $scope.post = {};
+    $http.get('/blogs/api/display', {
+        params: {
+            userId: $scope.userId,
+            postId: $routeParams.id
+        }
+    }).success(function (resp) {
+        if (resp.status == 0) {
+            $scope.post = resp.post;
         }
     });
 }

@@ -10,12 +10,12 @@ myboys.directive('menu', function () {
                     name: '博客',
                     path: 'blog',
                     sub_menu_items: [
-                        {name: '推荐日志'},
-                        {name: '热门日志'},
+                        {name: '推荐日志', url: '/blog/recommend'},
+                        {name: '热门日志', url: '/blog/hot'},
                         {name: '我的日志', url: '/blog/list'},
                         {name: '添加日志', url: '/blog/add'},
-                        {name: '草稿箱'},
-                        {name: '设置'}
+                        {name: '草稿箱', url: '/blog/draft'},
+                        {name: '设置', url: '/blog/setting'}
                     ]
                 },
                 {
@@ -49,7 +49,7 @@ myboys.directive('menu', function () {
             $scope.displayMenuItem = function (index) {
                 $scope.current_menu_item = index;
                 $scope.sub_menu_items = $scope.menu_items[index].sub_menu_items;
-                $location.path($scope.sub_menu_items[0].url);
+                window.location.href = $scope.sub_menu_items[0].url;
             };
             $scope.displaySubMenuItem = function (index) {
                 $scope.current_sub_menu_item = index;
