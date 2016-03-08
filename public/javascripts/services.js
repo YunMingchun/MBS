@@ -11,6 +11,10 @@ myboys.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'blogs/recommend',
             controller: blogRecCtrl
         }).
+        when('/blog/hot', {
+            templateUrl: 'blogs/hot',
+            controller: blogHotCtrl
+        }).
         when('/blog/add', {
             templateUrl: 'blogs/add',
             controller: blogAddCtrl
@@ -22,6 +26,10 @@ myboys.config(['$routeProvider', function ($routeProvider) {
         when('/blog/post/:id', {
             templateUrl: 'blogs/display',
             controller: postCtrl
+        }).
+        when('/blog/edit/:id', {
+            templateUrl: 'blogs/edit',
+            controller: postEditCtrl
         });
 }]);
 

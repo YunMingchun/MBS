@@ -18,19 +18,19 @@ myboys.directive('menu', function () {
                         {name: '设置', url: '/blog/setting'}
                     ]
                 },
-                {
-                    name: '用户',
-                    sub_menu_items: [
-                        {name: '资料编辑'}
-                    ]
-                },
-                {
-                    name: '系统',
-                    sub_menu_items: [
-                        {name: '设置'},
-                        {name: '注销'}
-                    ]
-                }
+                //{
+                //    name: '用户',
+                //    sub_menu_items: [
+                //        {name: '资料编辑', url: '/user/edit'}
+                //    ]
+                //},
+                //{
+                //    name: '系统',
+                //    sub_menu_items: [
+                //        {name: '设置', url: '/sys/setting'},
+                //        {name: '注销', url: '/sys/logout'}
+                //    ]
+                //}
             ];
 
 

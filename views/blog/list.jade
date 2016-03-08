@@ -13,6 +13,6 @@ table#blog-list
             td.privacy(ng-bind='post.privacy | privacy')
             td.tags(ng-bind-html='post.tags | tags')
             td.ops
-                span.edit 编辑
+                span.edit(ng-click='editPost(post._id)') 编辑
                 span.delete(ng-click='deletePost(post._id)') 删除
 

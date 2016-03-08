@@ -9,6 +9,7 @@ function Post(post) {
     this.content = post.content;
     this.isPublished = post.isPublished;
     this.createTime = post.createTime;
+    this.updateTime = post.updateTime;
 };
 
 Post.create = function (post, callback) {
@@ -52,6 +53,44 @@ Post.findById = function (postId, callback) {
             db.collection('posts').find({'_id': ObjectId(postId)}).toArray(function (err, resp) {
                 if (!err) {
                     callback(resp[0]);
+                    db.close();
+                }
+            });
+        }
+    });
+};
+
+Post.deleteById = function (postId, callback) {
+    db.open(function (err, db) {
+        if (!err) {
+            db.collection('posts').updateOne({'_id': ObjectId(postId)}, {
+                $set: {
+                    'inUse': 0
+                }
+            }, function (err, resp) {
+                if (!err) {
+                    callback(resp);
+                    db.close();
+                }
+            });
+        }
+    });
+};
+
+Post.edit = function (post, callback) {
+    db.open(function (err, db) {
+        if (!err) {
+            db.collection('posts').updateOne({'_id': ObjectId(post.postId)}, {
+                $set: {
+                    'title': post.title,
+                    'privacy': post.privacy,
+                    'tags': post.tags,
+                    'content': post.content,
+                    'updateTime': post.updateTime
+                }
+            }, function (err, resp) {
+                if (!err) {
+                    callback(resp);
                     db.close();
                 }
             });

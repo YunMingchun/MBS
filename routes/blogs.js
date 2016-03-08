@@ -10,12 +10,20 @@ router.get('/recommend', function (req, res, next) {
     res.render('blog/recommend');
 });
 
+router.get('/hot', function (req, res, next) {
+    res.render('blog/hot');
+});
+
 router.get('/list', function (req, res, next) {
     res.render('blog/list');
 });
 
 router.get('/display', function (req, res, next) {
     res.render('blog/display');
+});
+
+router.get('/edit', function (req, res, next) {
+    res.render('blog/edit');
 });
 
 router.post('/api/add', function (req, res, next) {
@@ -33,6 +41,35 @@ router.post('/api/add', function (req, res, next) {
         res.json({
             status: 0,
             postId: resp
+        });
+    });
+});
+
+router.post('/api/edit', function (req, res, next) {
+    var post = {
+        userId: req.body.userId,
+        postId: req.body.postId,
+        title: req.body.title,
+        privacy: req.body.privacy,
+        tags: req.body.tags,
+        content: req.body.content,
+        isPublished: req.body.isPublished,
+        updateTime: req.body.updateTime
+    };
+
+    Post.edit(post, function (resp) {
+        res.json({
+            status: 0
+        });
+    });
+});
+
+router.post('/api/delete', function (req, res, next) {
+    var postId = req.body.postId;
+
+    Post.deleteById(postId, function (resp) {
+        res.json({
+            status: 0
         });
     });
 });

@@ -58,6 +58,10 @@
     width: 30%;
 }
 
+#edit > .form-group {
+    width: 30%;
+}
+
 .tags {
     overflow: hidden;
     margin-bottom: 10px;
