@@ -4,19 +4,28 @@ html(lang='en' ng-app='myboys')
         base(href='/')
         meta(http-equiv='Content-Type',content='text/html;charset=utf-8')
         title= title
+        //Bootstrap
+        link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css')
+        //Font-awesome
+        link(rel="stylesheet", href="/third/font-awesome/font-awesome.css")
+        //SummerNote
+        link(rel="stylesheet", href="/third/summernote/summernote.css")
         link(rel='stylesheet', href='/stylesheets/global.css')
-        //UEditor
-        script(src='http://ueditor.baidu.com/ueditor/ueditor.config.js')
-        script(src='http://ueditor.baidu.com/ueditor/ueditor.all.js')
         block links
     body
         block body
+    //Jquery
+    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    //Bootstrap
+    script(src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js')
+    //SummerNote
+    script(src='/third/summernote/summernote.js')
     //Angular
     script(src='/javascripts/third/angular.js')
     script(src='/javascripts/third/angular-cookies.js')
     script(src='/javascripts/third/angular-route.js')
     script(src='/javascripts/third/angular-sanitize.js')
-    script(src='/javascripts/third/angular-ueditor.js')
+    script(src='/javascripts/third/angular-summernote.js')
     //Controller
     script(src='/javascripts/services.js')
     script(src='/javascripts/directives.js')

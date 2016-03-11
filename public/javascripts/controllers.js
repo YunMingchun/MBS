@@ -83,11 +83,24 @@ function blogAddCtrl($scope, $http) {
     $scope.tagKey = '';
     $scope.tags = [];
     $scope.blogContent = '';
-    $scope.config = {
+    $scope.options = {
+        height: 700,
         focus: true,
-        autoFloatEnabled: true,
-        initialFrameHeight: 500,
-        initialFrameWidth: null
+        airMode: false,
+        toolbar: [
+            ['edit', ['undo', 'redo']],
+            ['headline', ['style']],
+            ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
+            ['fontface', ['fontname']],
+            ['textsize', ['fontsize']],
+            ['fontclr', ['color']],
+            ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
+            ['height', ['height']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video', 'hr']],
+            ['view', ['fullscreen', 'codeview']],
+            ['help', ['help']]
+        ]
     };
 
     $scope.addTag = function (e) {
@@ -185,11 +198,24 @@ function postEditCtrl($scope, $http, $routeParams) {
         {name: '公开', value: 'public'},
         {name: '仅自己可见', value: 'private'}
     ];
-    $scope.config = {
+    $scope.options = {
+        height: 700,
         focus: true,
-        autoFloatEnabled: true,
-        initialFrameHeight: 500,
-        initialFrameWidth: null
+        airMode: false,
+        toolbar: [
+            ['edit', ['undo', 'redo']],
+            ['headline', ['style']],
+            ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
+            ['fontface', ['fontname']],
+            ['textsize', ['fontsize']],
+            ['fontclr', ['color']],
+            ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
+            ['height', ['height']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video', 'hr']],
+            ['view', ['fullscreen', 'codeview']],
+            ['help', ['help']]
+        ]
     };
 
     $http.get('/blogs/api/display', {

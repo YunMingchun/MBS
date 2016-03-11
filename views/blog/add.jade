@@ -7,7 +7,7 @@ div#add.form
         input.form-control(type='text',placeholder='请输入标签',ng-keydown='addTag($event)',ng-model='tagKey')
     div.tags
         span.tag(ng-repeat='tag in tags track by $index',ng-bind='tag',ng-click='removeTag($index)')
-    div.ueditor(ng-model='blogContent',config='config',ready='ready')
+    summernote(config="options",ng-model='blogContent')
     div.btns
         a.btn(ng-click='submit()') 提交
         a.btn(ng-click='draft()') 保存草稿
