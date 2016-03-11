@@ -18,6 +18,10 @@ router.get('/list', function (req, res, next) {
     res.render('blog/list');
 });
 
+router.get('/draft', function (req, res, next) {
+    res.render('blog/draft');
+});
+
 router.get('/display', function (req, res, next) {
     res.render('blog/display');
 });

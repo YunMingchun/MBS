@@ -138,9 +138,33 @@ function blogAddCtrl($scope, $http) {
                 window.location.href = '/blog/list';
             }
         });
-
     };
     $scope.draft = function () {
+        var privacy = ($scope.selected == '0' || $scope.selected == 'public') ? 'public' : 'private';
+        var tags = $scope.tags.join(',');
+        if ($scope.title == '') {
+            return;
+        }
+
+        var time = new Date();
+        var year = time.getFullYear();
+        var month = pad0(time.getMonth() + 1);
+        var day = pad0(time.getDate());
+        var hour = pad0(time.getHours());
+
+        $http.post('/blogs/api/add', {
+            userId: $scope.userId,
+            title: $scope.title,
+            privacy: privacy,
+            tags: tags,
+            content: $scope.blogContent,
+            isPublished: 0,
+            createTime: year + '-' + month + '-' + day + ':' + hour
+        }).success(function (resp) {
+            if (resp.status == 0) {
+                window.location.href = '/blog/draft';
+            }
+        });
     }
 }
 
@@ -268,9 +292,63 @@ function postEditCtrl($scope, $http, $routeParams) {
                 window.location.href = '/blog/post/' + $routeParams.id;
             }
         });
-
     };
     $scope.draft = function () {
+        var privacy = $scope.selected == 'public' ? 'public' : 'private';
+        var tags = $scope.tags.join(',');
+        if ($scope.title == '') {
+            return;
+        }
+
+        var time = new Date();
+        var year = time.getFullYear();
+        var month = pad0(time.getMonth() + 1);
+        var day = pad0(time.getDate());
+        var hour = pad0(time.getHours());
+
+        $http.post('/blogs/api/edit', {
+            userId: $scope.userId,
+            postId: $routeParams.id,
+            title: $scope.title,
+            privacy: privacy,
+            tags: tags,
+            content: $scope.blogContent,
+            isPublished: 0,
+            updateTime: year + '-' + month + '-' + day + ':' + hour
+        }).success(function (resp) {
+            if (resp.status == 0) {
+                window.location.href = '/blog/post/' + $routeParams.id;
+            }
+        });
+    }
+}
+
+function blogDraftCtrl($scope, $http, $location) {
+    $http.get('/blogs/api/list', {
+        params: {
+            userId: $scope.userId
+        }
+    }).success(function (resp) {
+        if (resp.status == 0) {
+            $scope.posts = resp.posts;
+        }
+    });
+
+    $scope.displayPost = function (id) {
+        $location.path('/blog/post/' + id);
+    };
+    $scope.deletePost = function (id) {
+        $http.post('/blogs/api/delete', {
+            userId: $scope.userId,
+            postId: id
+        }).success(function (resp) {
+            if (resp.status == 0) {
+                window.location.href = '/blog/list';
+            }
+        });
+    };
+    $scope.editPost = function (id) {
+        $location.path('/blog/edit/' + id);
     }
 }
 

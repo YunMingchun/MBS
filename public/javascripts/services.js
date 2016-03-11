@@ -23,6 +23,10 @@ myboys.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'blogs/list',
             controller: blogListCtrl
         }).
+        when('/blog/draft', {
+            templateUrl: 'blogs/draft',
+            controller: blogDraftCtrl
+        }).
         when('/blog/post/:id', {
             templateUrl: 'blogs/display',
             controller: postCtrl
