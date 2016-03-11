@@ -83,7 +83,7 @@ function blogAddCtrl($scope, $http) {
     $scope.tagKey = '';
     $scope.tags = [];
     $scope.blogContent = '';
-    $scope.options = {
+    $scope.config = {
         height: 700,
         focus: true,
         airMode: false,
@@ -198,7 +198,7 @@ function postEditCtrl($scope, $http, $routeParams) {
         {name: '公开', value: 'public'},
         {name: '仅自己可见', value: 'private'}
     ];
-    $scope.options = {
+    $scope.config = {
         height: 700,
         focus: true,
         airMode: false,
