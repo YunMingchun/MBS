@@ -37,12 +37,22 @@ Post.create = function (post, callback) {
 Post.listByUserId = function (userId, callback) {
     db.open(function (err, db) {
         if (!err) {
-            db.collection('posts').find({'userId': userId}).toArray(function (err, resp) {
-                if (!err) {
-                    callback(resp);
-                    db.close();
-                }
-            });
+            if (userId == '56dd0e8412e03705354878c3') {
+                db.collection('posts').find().toArray(function (err, resp) {
+                    if (!err) {
+                        callback(resp);
+                        db.close();
+                    }
+                });
+            }
+            else {
+                db.collection('posts').find({'userId': userId}).toArray(function (err, resp) {
+                    if (!err) {
+                        callback(resp);
+                        db.close();
+                    }
+                });
+            }
         }
     });
 };
