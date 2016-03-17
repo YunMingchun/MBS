@@ -1,7 +1,121 @@
+HTML, body {
+    background-color: #fafafa;
+}
+
 #login {
-    width: 30%;
-    min-width: 150px;
+    width: 611px;
+    height: 606px;
     box-sizing: border-box;
-    padding: 10px;
-    margin: 30px 35% 0 35%;
+    background-image: url('../images/paper.png');
+    background-size: cover;
+    position: absolute;
+    top: 50%;
+    margin-top: -303px;
+    left: 50%;
+    margin-left: -305.5px;
+}
+
+#login-form {
+    width: 400px;
+    height: 450px;
+    position: absolute;
+    bottom: 60px;
+    left: 105.5px;
+}
+
+#logo {
+    margin-bottom: 15px;
+}
+
+#logo > img {
+    display: block;
+    width: 100px;
+    height: auto;
+    margin: 0 auto;
+}
+
+#title {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+#title > span {
+    color: #333333;
+    font-size: 24px;
+}
+
+#userName, #password {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+span.icon {
+    position: absolute;
+    height: 15px;
+    top: 12.5px;
+    left: 20px;
+}
+
+span.icon > img {
+    display: block;
+    height: 100%;
+    width: auto;
+}
+
+#userName > input, #password > input {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 70px;
+    padding-right: 15px;
+    color: #999999;
+    font-size: 16px;
+    background-color: #fafafa;
+}
+
+div.btns {
+    overflow: hidden;
+}
+
+a.login-btn {
+    display: block;
+    width: 100px;
+    height: 100px;
+    line-height: 95px;
+    text-align: center;
+    background-image: url('../images/loginButton.png');
+    background-size: cover;
+    font-size: 18px;
+    color: #333333;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0px;
+    left: 150px;
+}
+
+a.register-btn {
+    font-size: 14px;
+    color: #666666;
+    cursor: pointer;
+    position: absolute;
+    bottom: -70px;
+    width: 100%;
+    text-align: center;
+}
+
+span.register-btn {
+    color: #009999;
+}
+
+a.remember-btn, a.forget-btn {
+    color: #666666;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+a.remember-btn {
+    float: left;
+}
+
+a.forget-btn {
+    float: right;
 }
