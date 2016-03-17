@@ -1,6 +1,5 @@
 var db = require('./db');
 var ObjectId = require('mongodb').ObjectId;
-var User = require('user');
 
 function Post(post) {
     this.userId = post.userId;
