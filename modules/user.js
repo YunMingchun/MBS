@@ -1,5 +1,6 @@
 var db = require('./db');
 var crypto = require('crypto');
+var ObjectId = require('mongodb').ObjectId;
 
 function User(user) {
     this.userName = user.userName;
@@ -28,6 +29,19 @@ User.findByName = function (userName, callback) {
     db.open(function (err, db) {
         if (!err) {
             db.collection('users').find({userName: userName}).toArray(function (err, resp) {
+                if (!err) {
+                    callback(resp[0]);
+                    db.close();
+                }
+            });
+        }
+    });
+};
+
+User.findById = function (userId, callback) {
+    db.open(function (err, db) {
+        if (!err) {
+            db.collection('users').find({'_id': ObjectId(userId)}).toArray(function (err, resp) {
                 if (!err) {
                     callback(resp[0]);
                     db.close();

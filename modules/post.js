@@ -1,5 +1,6 @@
 var db = require('./db');
 var ObjectId = require('mongodb').ObjectId;
+var User = require('user');
 
 function Post(post) {
     this.userId = post.userId;
@@ -37,22 +38,24 @@ Post.create = function (post, callback) {
 Post.listByUserId = function (userId, callback) {
     db.open(function (err, db) {
         if (!err) {
-            if (userId == '56dd0e8412e03705354878c3') {
-                db.collection('posts').find().toArray(function (err, resp) {
-                    if (!err) {
-                        callback(resp);
-                        db.close();
-                    }
-                });
-            }
-            else {
-                db.collection('posts').find({'userId': userId}).toArray(function (err, resp) {
-                    if (!err) {
-                        callback(resp);
-                        db.close();
-                    }
-                });
-            }
+            User.findById(userId, function (resp) {
+                if (resp.isSuper == 1) {
+                    db.collection('posts').find().toArray(function (err, resp) {
+                        if (!err) {
+                            callback(resp);
+                            db.close();
+                        }
+                    });
+                }
+                else {
+                    db.collection('posts').find({'userId': userId}).toArray(function (err, resp) {
+                        if (!err) {
+                            callback(resp);
+                            db.close();
+                        }
+                    });
+                }
+            });
         }
     });
 };
