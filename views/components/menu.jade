@@ -1,11 +1,18 @@
 div#directive-menu
-    ul#menu
-        li.user-profile
-            | 欢迎你，
-            span(ng-bind='userName')
-        li.menu-item(ng-repeat='menu_item in menu_items',ng-class='{active: $index == current_menu_item}')
-            a(ng-bind='menu_item.name',ng-click='displayMenuItem($index)')
-    ul#sub-menu
-        li.sub-menu-item(ng-repeat='sub_menu_item in sub_menu_items' ng-class='{active: $index == current_sub_menu_item}')
-            a(ng-bind='sub_menu_item.name',ng-click='displaySubMenuItem($index)')
+    div.left
+        div.logo-and-title
+            span.title Must Be Successful
+            span.logo
+                img(src='/images/logo.png')
+    div.right
+        div.funcs
+            div.search
+                input.search(placeholder='Search MBS')
+                img.search-icon(src='/images/searchIcon.png')
+            a.btn.create-post Write a story
+            a.menu-btn(ng-if='display_mode == "user"',ng-click='toggleMenu()')
+                img(src='/images/accountIcon.png')
+                ul.menu-list(ng-show='menuIsDisplay')
+                    li.menu-item(ng-repeat='item in menu_items',ng-bind='item.name',ng-click='jump2Other(item.url)')
+            a.btn.login-btn(ng-if='display_mode == "visitor"',ng-click='jump2Login()') Sign up / Login
     div.clear

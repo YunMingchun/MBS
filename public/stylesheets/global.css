@@ -65,3 +65,15 @@ div.clear {
 thead {
     text-align: center;
 }
+
+div.left {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+div.right {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+}
