@@ -5,36 +5,36 @@ myboys.config(['$locationProvider', function ($locationProvider) {
 }]);
 
 myboys.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.
-        when('/', {redirectTo: 'blog/recommend'}).
-        when('/blog/recommend', {
-            templateUrl: 'blogs/recommend',
-            controller: blogRecCtrl
-        }).
-        when('/blog/hot', {
-            templateUrl: 'blogs/hot',
-            controller: blogHotCtrl
-        }).
-        when('/blog/add', {
-            templateUrl: 'blogs/add',
-            controller: blogAddCtrl
-        }).
-        when('/blog/list', {
-            templateUrl: 'blogs/list',
-            controller: blogListCtrl
-        }).
-        when('/blog/draft', {
-            templateUrl: 'blogs/draft',
-            controller: blogDraftCtrl
-        }).
-        when('/blog/post/:id', {
-            templateUrl: 'blogs/display',
-            controller: postCtrl
-        }).
-        when('/blog/edit/:id', {
-            templateUrl: 'blogs/edit',
-            controller: postEditCtrl
-        });
+    //$routeProvider.
+    //when('/', {redirectTo: 'blog/recommend'}).
+    //when('/blog/recommend', {
+    //    templateUrl: 'blogs/recommend',
+    //    controller: blogRecCtrl
+    //}).
+    //when('/blog/hot', {
+    //    templateUrl: 'blogs/hot',
+    //    controller: blogHotCtrl
+    //}).
+    //when('/blog/add', {
+    //    templateUrl: 'blogs/add',
+    //    controller: blogAddCtrl
+    //}).
+    //when('/blog/list', {
+    //    templateUrl: 'blogs/list',
+    //    controller: blogListCtrl
+    //}).
+    //when('/blog/draft', {
+    //    templateUrl: 'blogs/draft',
+    //    controller: blogDraftCtrl
+    //}).
+    //when('/blog/post/:id', {
+    //    templateUrl: 'blogs/display',
+    //    controller: postCtrl
+    //}).
+    //when('/blog/edit/:id', {
+    //    templateUrl: 'blogs/edit',
+    //    controller: postEditCtrl
+    //});
 }]);
 
 myboys.filter('privacy', function () {

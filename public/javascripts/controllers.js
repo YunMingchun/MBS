@@ -40,6 +40,9 @@ myboys.controller('loginCtrl', function ($scope, $http, $location, $cookies) {
     $scope.userName = '';
     $scope.password = '';
 
+    $cookies.userName = '';
+    $cookies.userId = '';
+
     $scope.signin = function () {
         if ($scope.userName == '' || $scope.password == '') {
             return;
@@ -67,9 +70,6 @@ myboys.controller('loginCtrl', function ($scope, $http, $location, $cookies) {
 
 myboys.controller('homeCtrl', function ($scope, $cookies, $location) {
     $scope.userId = $cookies.userId;
-    if (!$scope.userId) {
-        window.location.href = '/login';
-    }
 });
 
 function blogAddCtrl($scope, $http) {

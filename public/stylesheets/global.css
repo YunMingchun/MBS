@@ -3,6 +3,7 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
+    font-family: "Microsoft Yahei";
 }
 
 ul {
@@ -33,7 +34,7 @@ ul {
 }
 
 div.form-group {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 input.form-control {
@@ -63,4 +64,16 @@ div.clear {
 
 thead {
     text-align: center;
+}
+
+div.left {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+div.right {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
 }
