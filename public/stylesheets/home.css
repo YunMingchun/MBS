@@ -9,6 +9,8 @@
     height: 70px;
     line-height: 70px;
     background-color: transparent;
+    position: relative;
+    z-index: 1;
 }
 
 #directive-menu div.logo-and-title {
@@ -153,12 +155,29 @@
 
 #intro-pic {
     margin-bottom: 55px;
+    position: relative;
 }
 
 #intro-pic > img {
     display: block;
     width: 100%;
     height: auto;
+}
+
+#intro-pic > a.get-started {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #00ccff;
+    border: none;
+    width: 130px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 25px;
+    padding: 0px;
+    margin-left: -65px;
 }
 
 #posts-display {

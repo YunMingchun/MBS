@@ -1,7 +1,7 @@
 var myboys = angular.module('myboys', ['ngCookies', 'ngRoute', 'ngSanitize', 'summernote']);
 
 myboys.config(['$locationProvider', function ($locationProvider) {
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
 }]);
 
 myboys.config(['$routeProvider', function ($routeProvider) {
