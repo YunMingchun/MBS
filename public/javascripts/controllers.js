@@ -3,6 +3,7 @@ myboys.controller('registerCtrl', function ($scope, $http, $location, $cookies) 
     $scope.password = '';
     $scope.repasswd = '';
     $scope.email = '';
+    $scope.passwordType = 'password';
 
     $scope.register = function () {
         if ($scope.userName == '' || $scope.password == '' || $scope.email == '') {
@@ -22,6 +23,7 @@ myboys.controller('registerCtrl', function ($scope, $http, $location, $cookies) 
                 window.location.href = '/';
             }
             else {
+                alert(resp.msg);
             }
         });
     };
@@ -33,7 +35,11 @@ myboys.controller('registerCtrl', function ($scope, $http, $location, $cookies) 
         else {
             window.location.href = '/login';
         }
-    }
+    };
+    $scope.displayPassword = function () {
+        $scope.passwordIsDisplayed = !$scope.passwordIsDisplayed;
+        $scope.passwordType = $scope.passwordType == 'password' ? 'text' : 'password';
+    };
 });
 
 myboys.controller('loginCtrl', function ($scope, $http, $location, $cookies) {
@@ -109,6 +115,8 @@ myboys.controller('homeCtrl', function ($scope, $cookies, $location) {
         url: '',
         createTime: '2016-03-19 17:09'
     }];
+    $scope.display_mode = !$scope.userId ? 'visitor' : 'user';
+
 });
 
 function blogAddCtrl($scope, $http) {

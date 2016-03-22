@@ -4,8 +4,6 @@ myboys.directive('menu', function () {
         templateUrl: '/components/menu',
         replace: true,
         controller: function ($scope, $cookies, $location) {
-            $scope.userId = $cookies.userId;
-            $scope.display_mode = !$scope.userId ? 'visitor' : 'user';
             $scope.menu_items = [
                 {name: 'My Story', url: '/blogs/list'},
                 {name: 'Drafts', url: '/blogs/draft'},
@@ -20,9 +18,6 @@ myboys.directive('menu', function () {
             };
             $scope.jump2Other = function (url) {
                 window.location.href = url;
-            };
-            $scope.jump2Login = function () {
-                window.location.href = '/login';
             };
         }
     }

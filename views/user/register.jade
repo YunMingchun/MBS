@@ -1,20 +1,36 @@
 extends ../template.jade
 
 block links
-   link(rel='stylesheet',href='/stylesheets/register.css')
+    link(rel='stylesheet',href='/stylesheets/register.css')
 
 block body
-   div#register(ng-controller='registerCtrl')
-      div#register-form
-         div#userName.form-group
-            input.form-control(type='text' placeholder='请输入用户名' ng-model='userName')
-         div#password.form-group
-            input.form-control(type='password' placeholder='请输入密码' ng-model='password')
-         div#repasswd.form-group
-            input.form-control(type='password' placeholder='请再次输入密码' ng-model='repasswd')
-         div#email.form-group
-            input.form-control(type='email' placeholder='请输入邮箱' ng-model='email')
-      div.btns
-         a.btn.register-btn(ng-click='register()') 注册
-         a.btn.cancel-btn(ng-click='back2up()') 返回
+    div#register(ng-controller='registerCtrl')
+        div#register-form
+            div#logo
+                img(src='/images/logo.png')
+            div#title
+                span Must Be Successful
+            div#userName.form-group
+                span.icon
+                    img(src='/images/account.png')
+                input.form-control(type='text' placeholder='username' ng-model='userName')
+            div#password.form-group
+                span.icon
+                    img(src='/images/lock.png')
+                input.form-control(type='{{passwordType}}' placeholder='password' ng-model='password')
+                span.display-password(ng-click='displayPassword()')
+                    img.eye(src='/images/eye.png',ng-show='!passwordIsDisplayed')
+                    img.eye-off(src='/images/eye-off.png',ng-show='passwordIsDisplayed')
+            div#repasswd.form-group
+                span.icon
+                    img(src='/images/lock.png')
+                input.form-control(type='password' placeholder='repassword' ng-model='repasswd')
+            div#email.form-group
+                span.icon
+                    img(src='/images/email.png')
+                input.form-control(type='email' placeholder='mailbox' ng-model='email')
+            div.btns
+                a.register-btn(ng-click='register()') Sign up
+                a.cancel-btn(ng-click='back2up()') Have an account?&nbsp;
+                    span.cancel-btn Back
 block scripts

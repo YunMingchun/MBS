@@ -6,7 +6,7 @@ HTML, body {
     width: 611px;
     height: 606px;
     box-sizing: border-box;
-    background-image: url('../images/paper.png');
+    background-image: url('../images/papers.png');
     background-size: cover;
     position: absolute;
     top: 50%;
@@ -85,7 +85,7 @@ a.login-btn {
     background-image: url('../images/loginButton.png');
     background-size: cover;
     font-size: 18px;
-    color: #333333;
+    color: #999999;
     cursor: pointer;
     position: absolute;
     bottom: 0px;

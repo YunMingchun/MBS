@@ -14,5 +14,5 @@ div#directive-menu
                 img(src='/images/accountIcon.png')
                 ul.menu-list(ng-show='menuIsDisplay')
                     li.menu-item(ng-repeat='item in menu_items',ng-bind='item.name',ng-click='jump2Other(item.url)')
-            a.btn.login-btn(ng-if='display_mode == "visitor"',ng-click='jump2Login()') Sign up / Login
+            a.btn.login-btn(ng-if='display_mode == "visitor"',href='/login') Sign up / Login
     div.clear
