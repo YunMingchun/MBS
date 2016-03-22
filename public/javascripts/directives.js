@@ -7,11 +7,11 @@ myboys.directive('menu', function () {
             $scope.userId = $cookies.userId;
             $scope.display_mode = !$scope.userId ? 'visitor' : 'user';
             $scope.menu_items = [
-                {name: 'My Story', url: '/blog/list'},
-                {name: 'Drafts', url: ''},
-                {name: 'Messages', url: ''},
-                {name: 'Profile', url: ''},
-                {name: 'Setting', url: ''},
+                {name: 'My Story', url: '/blogs/list'},
+                {name: 'Drafts', url: '/blogs/draft'},
+                {name: 'Messages', url: '#'},
+                {name: 'Profile', url: '#'},
+                {name: 'Setting', url: '#'},
                 {name: 'logout', url: '/login'}
             ];
 

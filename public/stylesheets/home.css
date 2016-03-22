@@ -151,8 +151,41 @@
     border-top: 1px solid #ececec;
 }
 
-#introPic > img {
+#intro-pic {
+    margin-bottom: 55px;
+}
+
+#intro-pic > img {
     display: block;
     width: 100%;
     height: auto;
+}
+
+#posts-display {
+    margin: 0 auto;
+    width: 1090px;
+}
+
+#posts-latest {
+    float: left;
+    margin-right: 10px;
+}
+
+#posts-trending {
+    float: left;
+    margin-right: 10px;
+}
+
+#posts-featured {
+    float: left;
+}
+
+#posts-display div.header {
+    height: 170px;
+}
+
+#posts-display div.header > img {
+    display: block;
+    height: 100%;
+    width: auto;
 }

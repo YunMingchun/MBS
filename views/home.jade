@@ -5,6 +5,23 @@ block links
 block body
     div#home(ng-controller='homeCtrl')
         menu
-        div#introPic
+        div#intro-pic
             img(src='/images/introPic.jpg')
+        div#posts-display
+            div#posts-latest
+                div.header
+                    img(src='/images/latestPic.jpg')
+                    span.tip Latest
+                div.list
+            div#posts-trending
+                div.header
+                    img(src='/images/trendingPic.jpg')
+                    span.tip Latest
+                div.list
+            div#posts-featured
+                div.header
+                    img(src='/images/featuredPic.jpg')
+                    span.tip Latest
+                div.list
+            div.clear
 block scripts

@@ -9,7 +9,7 @@ div#directive-menu
             div.search
                 input.search(placeholder='Search MBS')
                 img.search-icon(src='/images/searchIcon.png')
-            a.btn.create-post Write a story
+            a.btn.create-post(href='/blogs/add') Write a story
             a.menu-btn(ng-if='display_mode == "user"',ng-click='toggleMenu()')
                 img(src='/images/accountIcon.png')
                 ul.menu-list(ng-show='menuIsDisplay')
