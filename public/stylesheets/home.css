@@ -190,9 +190,92 @@
     margin-right: 10px;
 }
 
+#posts-latest ul.list {
+    margin-top: 30px;
+}
+
+#posts-latest li.item {
+    padding: 0px 15px;
+    position: relative;
+}
+
+#posts-latest li.item:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 100%;
+    border-left: 2px solid #f0f0f0;
+    top: 0px;
+    left: 13px;
+}
+
+#posts-latest div.item-inner {
+    margin: 0px 15px;
+    padding: 15px 0px;
+    border-bottom: solid 1px #e9eaec;
+}
+
+#posts-latest a.title {
+    display: block;
+    font-size: 14px;
+    color: #333333;
+    margin: 6px 0px;
+    position: relative;
+}
+
+#posts-latest a.title:before {
+    content: "";
+    position: absolute;
+    background-color: #95c7ec;
+    border: 1px solid #ffffff;
+    width: 10px;
+    height: 10px;
+    top: 4px;
+    left: -21px;
+    border-radius: 100%;
+}
+
+#posts-latest span.create-time {
+    display: block;
+    font-size: 10px;
+    color: #999999;
+    margin-top: 10px;
+}
+
 #posts-trending {
     float: left;
     margin-right: 10px;
+}
+
+#posts-trending div.header {
+    margin-bottom: 30px;
+}
+
+#posts-trending div.tab-nav {
+    width: 80%;
+    margin: 0 10%;
+    overflow: hidden;
+}
+
+#posts-trending a.tab-btn {
+    display: block;
+    float: left;
+    width: 42.5%;
+    text-align: center;
+    font-size: 14px;
+    color: #999999;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #999999;
+    cursor: pointer;
+}
+
+#posts-trending a.tab-btn:first-child {
+    margin-right: 15%;
+}
+
+#posts-trending a.tab-btn.active {
+    color: #333333;
+    border-bottom: 1px solid #333333;
 }
 
 #posts-featured {

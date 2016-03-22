@@ -7,7 +7,7 @@ block body
         menu
         div#intro-pic
             img(src='/images/introPic.jpg')
-            a.btn.get-started(ng-if='display_mode == "visitor"',href='/login') Get Started
+            a.btn.get-started(ng-if='displayMode == "visitor"',href='/login') Get Started
         div#posts-display
             div#posts-latest
                 div.header
@@ -15,12 +15,16 @@ block body
                     span.tip Latest
                 ul.list
                     li.item(ng-repeat='post in latestPosts')
-                        a(ng-bind='post.title',href='post.url')
-                        span.create-time(ng-bind='post.createTime')
+                        div.item-inner
+                            a.title(ng-bind='post.title',href='{{post.url}}')
+                            span.create-time(ng-bind='post.createTime')
             div#posts-trending
                 div.header
                     img(src='/images/trendingPic.jpg')
                     span.tip Trending
+                div.tab-nav
+                    a.tab-btn(ng-class='{active:trendingTab == "Weekly"}',ng-click='trendingTab = "Weekly"') Weekly
+                    a.tab-btn(ng-class='{active:trendingTab == "Monthly"}',ng-click='trendingTab = "Monthly"') Monthly
                 ul.list
             div#posts-featured
                 div.header

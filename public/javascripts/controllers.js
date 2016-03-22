@@ -76,47 +76,47 @@ myboys.controller('loginCtrl', function ($scope, $http, $location, $cookies) {
 
 myboys.controller('homeCtrl', function ($scope, $cookies, $location) {
     $scope.userId = $cookies.userId;
+    $scope.displayMode = !$scope.userId ? 'visitor' : 'user';
+    $scope.trendingTab = 'Weekly';
     $scope.latestPosts = [{
         title: 'papi酱获逻辑思维、真格基金等联合投资1200万人民币',
-        url: '',
+        url: '#',
         createTime: '2016-03-19 17:09'
     }, {
         title: '6步熟悉一个行业',
-        url: '',
+        url: '#',
         createTime: '2016-03-19 17:09'
     }, {
         title: '雷军之前觉得机器战胜人类是时间问题，但被AlphGo整懵了',
-        url: '',
+        url: '#',
         createTime: '2016-03-19 17:09'
     }];
     $scope.trendingPosts = [{
         title: 'papi酱获逻辑思维、真格基金等联合投资1200万人民币',
-        url: '',
+        url: '#',
         createTime: '2016-03-19 17:09'
     }, {
         title: '6步熟悉一个行业',
-        url: '',
+        url: '#',
         createTime: '2016-03-19 17:09'
     }, {
         title: '雷军之前觉得机器战胜人类是时间问题，但被AlphGo整懵了',
-        url: '',
+        url: '#',
         createTime: '2016-03-19 17:09'
     }];
     $scope.featuredPosts = [{
         title: 'papi酱获逻辑思维、真格基金等联合投资1200万人民币',
-        url: '',
+        url: '#',
         createTime: '2016-03-19 17:09'
     }, {
         title: '6步熟悉一个行业',
-        url: '',
+        url: '#',
         createTime: '2016-03-19 17:09'
     }, {
         title: '雷军之前觉得机器战胜人类是时间问题，但被AlphGo整懵了',
-        url: '',
+        url: '#',
         createTime: '2016-03-19 17:09'
     }];
-    $scope.display_mode = !$scope.userId ? 'visitor' : 'user';
-
 });
 
 function blogAddCtrl($scope, $http) {
