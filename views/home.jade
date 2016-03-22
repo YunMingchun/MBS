@@ -12,16 +12,19 @@ block body
                 div.header
                     img(src='/images/latestPic.jpg')
                     span.tip Latest
-                div.list
+                ul.list
+                    li.item(ng-repeat='post in latestPosts')
+                        a(ng-bind='post.title',href='post.url')
+                        span.create-time(ng-bind='post.createTime')
             div#posts-trending
                 div.header
                     img(src='/images/trendingPic.jpg')
-                    span.tip Latest
-                div.list
+                    span.tip Trending
+                ul.list
             div#posts-featured
                 div.header
                     img(src='/images/featuredPic.jpg')
-                    span.tip Latest
-                div.list
+                    span.tip Featured
+                ul.list
             div.clear
 block scripts
