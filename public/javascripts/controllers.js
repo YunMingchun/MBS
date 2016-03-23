@@ -92,30 +92,34 @@ myboys.controller('homeCtrl', function ($scope, $cookies, $location) {
         createTime: '2016-03-19 17:09'
     }];
     $scope.trendingPosts = [{
-        title: 'papi酱获逻辑思维、真格基金等联合投资1200万人民币',
-        url: '#',
-        createTime: '2016-03-19 17:09'
+        title: '马克扎克伯格问马云：可以帮忙卖我们的VR产品吗？',
+        url: '#'
     }, {
-        title: '6步熟悉一个行业',
-        url: '#',
-        createTime: '2016-03-19 17:09'
-    }, {
-        title: '雷军之前觉得机器战胜人类是时间问题，但被AlphGo整懵了',
+        title: '该来的总会来的：新闻业也有“按需经济”了',
         url: '#',
         createTime: '2016-03-19 17:09'
     }];
     $scope.featuredPosts = [{
-        title: 'papi酱获逻辑思维、真格基金等联合投资1200万人民币',
+        title: '钱有的是，好内容没处找；妈咪多小姐少，短视频投资也是这个命啊',
         url: '#',
-        createTime: '2016-03-19 17:09'
+        createTime: '2016-03-19 17:09',
+        abstract: '最新消息，春节以来爆红的papi酱获得真格基金、逻辑思维等联合投资，总投资额达1200万人民币。',
+        avatar: '/images/avatar1.jpg',
+        username: '想太多小姐'
     }, {
-        title: '6步熟悉一个行业',
+        title: '内容为本，这件事情你们别忘了',
         url: '#',
-        createTime: '2016-03-19 17:09'
+        createTime: '2016-03-19 17:09',
+        abstract: '腾讯网总编辑王永浩的一番言论，引来了大V曹林的不满，而且是强烈不满。王永志先生到底说了什么呢？',
+        avatar: '/images/avatar2.jpg',
+        username: '奔跑吧VR'
     }, {
-        title: '雷军之前觉得机器战胜人类是时间问题，但被AlphGo整懵了',
+        title: '大学开始创业，5年创业生涯教会了我什么',
         url: '#',
-        createTime: '2016-03-19 17:09'
+        createTime: '2016-03-19 17:09',
+        abstract: '一些朋友和热心人士希望我在公司Gyanlab创业5周年之际能写点儿什么。',
+        avatar: '/images/avatar3.jpg',
+        username: '起啥名字好呢'
     }];
 });
 

@@ -26,12 +26,22 @@ block body
                     a.tab-btn(ng-class='{active:trendingTab == "Weekly"}',ng-click='trendingTab = "Weekly"') Weekly
                     a.tab-btn(ng-class='{active:trendingTab == "Monthly"}',ng-click='trendingTab = "Monthly"') Monthly
                 ul.list.custom-ul
-                    li.item(ng-repeat='post in latestPosts')
+                    li.item(ng-repeat='post in trendingPosts')
                         a.title(ng-bind='post.title',href='{{post.url}}')
             div#posts-featured
                 div.header
                     img(src='/images/featuredPic.jpg')
                     span.tip Featured
                 ul.list
+                    li.item(ng-repeat='post in featuredPosts')
+                        div.top
+                            span.avatar
+                                img(src='{{post.avatar}}')
+                            span.username(ng-bind='post.username')
+                            span.create-time(ng-bind='post.createTime')
+                        div.middle
+                            a.title(ng-bind='post.title',href='{{post.url}}')
+                        div.bottom
+                            span.abstract(ng-bind='post.abstract')
             div.clear
 block scripts
