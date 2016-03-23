@@ -13,22 +13,22 @@ block body
             div#userName.form-group
                 span.icon
                     img(src='/images/account.png')
-                input.form-control(type='text' placeholder='username' ng-model='userName')
+                input.form-control(type='text',placeholder='username',ng-model='userName')
             div#password.form-group
                 span.icon
                     img(src='/images/lock.png')
-                input.form-control(type='{{passwordType}}' placeholder='password' ng-model='password')
+                input.form-control(type='{{passwordType}}',placeholder='password',ng-model='password')
                 span.display-password(ng-click='displayPassword()')
                     img.eye(src='/images/eye.png',ng-show='!passwordIsDisplayed')
                     img.eye-off(src='/images/eye-off.png',ng-show='passwordIsDisplayed')
             div#repasswd.form-group
                 span.icon
                     img(src='/images/lock.png')
-                input.form-control(type='password' placeholder='repassword' ng-model='repasswd')
+                input.form-control(type='password',placeholder='repassword',ng-model='repasswd')
             div#email.form-group
                 span.icon
                     img(src='/images/email.png')
-                input.form-control(type='email' placeholder='mailbox' ng-model='email')
+                input.form-control(type='email',placeholder='mailbox',ng-model='email')
             div.btns
                 a.register-btn(ng-click='register()') Sign up
                 a.cancel-btn(ng-click='back2up()') Have an account?&nbsp;

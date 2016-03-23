@@ -25,7 +25,9 @@ block body
                 div.tab-nav
                     a.tab-btn(ng-class='{active:trendingTab == "Weekly"}',ng-click='trendingTab = "Weekly"') Weekly
                     a.tab-btn(ng-class='{active:trendingTab == "Monthly"}',ng-click='trendingTab = "Monthly"') Monthly
-                ul.list
+                ul.list.custom-ul
+                    li.item(ng-repeat='post in latestPosts')
+                        a.title(ng-bind='post.title',href='{{post.url}}')
             div#posts-featured
                 div.header
                     img(src='/images/featuredPic.jpg')

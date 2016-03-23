@@ -253,7 +253,7 @@
 
 #posts-trending div.tab-nav {
     width: 80%;
-    margin: 0 10%;
+    margin: 0 10% 30px 10%;
     overflow: hidden;
 }
 
@@ -276,6 +276,10 @@
 #posts-trending a.tab-btn.active {
     color: #333333;
     border-bottom: 1px solid #333333;
+}
+
+#posts-trending a.title {
+    display: block;
 }
 
 #posts-featured {
@@ -327,4 +331,42 @@
     #posts-featured {
         width: 473px;
     }
+}
+
+ul.custom-ul > li {
+    list-style: none;
+    position: relative;
+    padding: 0 0 0 30px;
+    margin: 0 15px 40px 15px;
+    -webkit-transition: .12s;
+    transition: .12s;
+    color: #cccccc;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+ul.custom-ul > li::before {
+    content: "";
+    background-color: #66ccff;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    position: absolute;
+    top: 5px;
+    left: 0;
+    opacity: .5;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+ul.custom-ul > li:hover {
+    color: #000000;
+}
+
+ul.custom-ul > li:hover::before {
+    box-shadow: 0 0 3px #66ccff;
+    opacity: 1;
+    -webkit-transform: scale(2);
+    -ms-transform: scale(2);
+    transform: scale(2);
 }
