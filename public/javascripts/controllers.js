@@ -121,6 +121,9 @@ myboys.controller('homeCtrl', function ($scope, $cookies, $location) {
         avatar: '/images/avatar3.jpg',
         username: '起啥名字好呢'
     }];
+    $scope.jump2Other = function (url) {
+        window.location.href = url;
+    };
 });
 
 myboys.controller('blogListCtrl', function ($scope, $cookies, $http) {

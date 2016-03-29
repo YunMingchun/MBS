@@ -9,10 +9,10 @@ div#directive-menu
             div.search
                 input.search(placeholder='Search MBS')
                 img.search-icon(src='/images/searchIcon.png')
-            a.btn.create-post(href='/blogs/add',ng-if='displayMode == "user"') Write a story
+            a.btn.create-post(ng-click='jump2Other("/blogs/add")',ng-if='displayMode == "user"') Write a story
             a.menu-btn(ng-if='displayMode == "user"',ng-click='toggleMenu()')
                 img(src='/images/accountIcon.png')
                 ul.menu-list(ng-show='menuIsDisplay')
                     li.menu-item(ng-repeat='item in menu_items',ng-bind='item.name',ng-click='jump2Other(item.url)')
-            a.btn.login-btn(ng-if='displayMode == "visitor"',href='/login') Sign up / Login
+            a.btn.login-btn(ng-if='displayMode == "visitor"',ng-click='jump2Other("/login")') Sign up / Login
     div.clear
