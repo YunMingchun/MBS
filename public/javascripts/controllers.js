@@ -123,7 +123,27 @@ myboys.controller('homeCtrl', function ($scope, $cookies, $location) {
     }];
 });
 
-function blogAddCtrl($scope, $http) {
+myboys.controller('blogListCtrl', function ($scope, $cookies, $http) {
+    $scope.userId = $cookies.userId;
+    $scope.userName = $cookies.userName;
+    $scope.getBlogs = (function () {
+        $http.get('/blogs/api/list', {
+            params: {
+                userId: $scope.userId
+            }
+        }).success(function (resp) {
+            if (resp.status == 0) {
+                $scope.posts = resp.posts;
+            }
+        });
+    })();
+    $scope.displayPost = function (id) {
+        window.location.href = '/blogs?postId=' + id;
+    };
+});
+
+myboys.controller('blogAddCtrl', function ($scope, $http, $cookies) {
+    $scope.userId = $cookies.userId;
     $scope.title = '';
     $scope.options = [
         {name: '选择可见性', value: '0'},
@@ -134,6 +154,7 @@ function blogAddCtrl($scope, $http) {
     $scope.tagKey = '';
     $scope.tags = [];
     $scope.blogContent = '';
+    $scope.abstract = '';
     $scope.config = {
         height: 700,
         focus: true,
@@ -166,7 +187,7 @@ function blogAddCtrl($scope, $http) {
     $scope.submit = function () {
         var privacy = ($scope.selected == '0' || $scope.selected == 'public') ? 'public' : 'private';
         var tags = $scope.tags.join(',');
-        if ($scope.title == '') {
+        if ($scope.title == '' || $scope.abstract == '') {
             return;
         }
 
@@ -183,17 +204,18 @@ function blogAddCtrl($scope, $http) {
             tags: tags,
             content: $scope.blogContent,
             isPublished: 1,
-            createTime: year + '-' + month + '-' + day + ':' + hour
+            createTime: year + '-' + month + '-' + day + ':' + hour,
+            abstract: $scope.abstract
         }).success(function (resp) {
             if (resp.status == 0) {
-                window.location.href = '/blog/list';
+                window.location.href = '/blogs/list';
             }
         });
     };
     $scope.draft = function () {
         var privacy = ($scope.selected == '0' || $scope.selected == 'public') ? 'public' : 'private';
         var tags = $scope.tags.join(',');
-        if ($scope.title == '') {
+        if ($scope.title == '' || $scope.abstract == '') {
             return;
         }
 
@@ -210,29 +232,35 @@ function blogAddCtrl($scope, $http) {
             tags: tags,
             content: $scope.blogContent,
             isPublished: 0,
-            createTime: year + '-' + month + '-' + day + ':' + hour
+            createTime: year + '-' + month + '-' + day + ':' + hour,
+            abstract: $scope.abstract
         }).success(function (resp) {
             if (resp.status == 0) {
-                window.location.href = '/blog/draft';
+                window.location.href = '/blogs/draft';
             }
         });
     }
-}
+});
 
-function blogListCtrl($scope, $http, $location) {
-    $http.get('/blogs/api/list', {
-        params: {
-            userId: $scope.userId
-        }
-    }).success(function (resp) {
-        if (resp.status == 0) {
-            $scope.posts = resp.posts;
-        }
-    });
+myboys.controller('blogDisplayCtrl', function ($scope, $location, $http, $cookies) {
+    $scope.post = {};
+    $scope.userId = $cookies.userId;
+    console.log($location.search());
+    $scope.getPost = (function () {
+        $http.get('/blogs/api/display', {
+            params: {
+                userId: $scope.userId,
+                postId: $location.search().postId
+            }
+        }).success(function (resp) {
+            if (resp.status == 0) {
+                $scope.post = resp.post;
+            }
+        });
+    })();
+});
 
-    $scope.displayPost = function (id) {
-        $location.path('/blog/post/' + id);
-    };
+function blogListCtrlBackup($scope, $http, $location) {
     $scope.deletePost = function (id) {
         $http.post('/blogs/api/delete', {
             userId: $scope.userId,
@@ -252,20 +280,6 @@ function blogRecCtrl($scope) {
 }
 
 function blogHotCtrl($scope) {
-}
-
-function postCtrl($scope, $routeParams, $http) {
-    $scope.post = {};
-    $http.get('/blogs/api/display', {
-        params: {
-            userId: $scope.userId,
-            postId: $routeParams.id
-        }
-    }).success(function (resp) {
-        if (resp.status == 0) {
-            $scope.post = resp.post;
-        }
-    });
 }
 
 function postEditCtrl($scope, $http, $routeParams) {

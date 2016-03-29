@@ -10,6 +10,7 @@ function Post(post) {
     this.isPublished = post.isPublished;
     this.createTime = post.createTime;
     this.updateTime = post.updateTime;
+    this.abstract = post.abstract;
 };
 
 Post.create = function (post, callback) {
@@ -23,7 +24,8 @@ Post.create = function (post, callback) {
                 'tags': post.tags,
                 'content': post.content,
                 'isPublished': post.isPublished,
-                'createTime': post.createTime
+                'createTime': post.createTime,
+                'abstract': post.abstract
             }, function (err, resp) {
                 if (!err) {
                     callback(resp.insertedId);
@@ -86,7 +88,8 @@ Post.edit = function (post, callback) {
                     'privacy': post.privacy,
                     'tags': post.tags,
                     'content': post.content,
-                    'updateTime': post.updateTime
+                    'updateTime': post.updateTime,
+                    'abstract': post.abstract
                 }
             }, function (err, resp) {
                 if (!err) {

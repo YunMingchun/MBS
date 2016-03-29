@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var Post = require('../modules/post');
 
+router.get('/', function (req, res, next) {
+    res.render('blog/display');
+});
+
 router.get('/add', function (req, res, next) {
     res.render('blog/add');
 });
@@ -38,7 +42,8 @@ router.post('/api/add', function (req, res, next) {
         tags: req.body.tags,
         content: req.body.content,
         isPublished: req.body.isPublished,
-        createTime: req.body.createTime
+        createTime: req.body.createTime,
+        abstract: req.body.abstract
     };
 
     Post.create(post, function (resp) {
@@ -58,7 +63,8 @@ router.post('/api/edit', function (req, res, next) {
         tags: req.body.tags,
         content: req.body.content,
         isPublished: req.body.isPublished,
-        updateTime: req.body.updateTime
+        updateTime: req.body.updateTime,
+        abstract: req.body.abstract
     };
 
     Post.edit(post, function (resp) {

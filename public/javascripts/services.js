@@ -1,7 +1,7 @@
-var myboys = angular.module('myboys', ['ngCookies', 'ngRoute', 'ngSanitize']);
+var myboys = angular.module('myboys', ['ngCookies', 'ngRoute', 'ngSanitize', 'summernote']);
 
 myboys.config(['$locationProvider', function ($locationProvider) {
-    //$locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
 }]);
 
 myboys.config(['$routeProvider', function ($routeProvider) {
@@ -22,19 +22,6 @@ myboys.filter('privacy', function () {
                     break;
                 }
             }
-        }
-    }
-});
-
-myboys.filter('tags', function () {
-    return function (input) {
-        if (input) {
-            var tags = input.split(',');
-            var tagsHtml = '';
-            for (var i = 0; i < tags.length; i++) {
-                tagsHtml += '<span class="tag">' + tags[i] + '</span>'
-            }
-            return tagsHtml;
         }
     }
 });

@@ -4,7 +4,7 @@ block links
     link(rel='stylesheet', href='/stylesheets/blog.css')
 block body
     blog-header
-    section#blogs-list
+    section#blogs-list(ng-controller='blogListCtrl')
         div.container
             div.row
                 div.col-md-3
@@ -15,18 +15,16 @@ block body
                             li.item Creative
                             li.item Grid
                 div.col-md-9
-                    article.post
-                        h3.post-title The simple Standard Post
+                    article.post(ng-repeat='post in posts track by post._id',ng-if='post.inUse == 1')
+                        h3.post-title(ng-bind='post.title',ng-click='displayPost(post._id)')
+                        div.clear
                         div.post-attr
-                            span.create-time 2014 Jun, 14
-                            span.author by Alisia Silverstone in Stories, Games
-                        p.abstract The system utilised prefabricated light gauge steel frames which could be built economically up to a maximum of 4 storeys. The frames were finished in a variety of claddings and their modular nature could be employed to produce architecturally satisfying buildings. Initially developed solely for schools, the system was also used to provide offices and housing. Important examples include many of the Hertfordshire schools, some of which have since been listed.
-                        a.more-btn View More
-                    article.post
-                        h3.post-title The simple Standard Post
-                        div.post-attr
-                            span.create-time 2014 Jun, 14
-                            span.author by Alisia Silverstone in Stories, Games
-                        p.abstract The system utilised prefabricated light gauge steel frames which could be built economically up to a maximum of 4 storeys. The frames were finished in a variety of claddings and their modular nature could be employed to produce architecturally satisfying buildings. Initially developed solely for schools, the system was also used to provide offices and housing. Important examples include many of the Hertfordshire schools, some of which have since been listed.
-                        a.more-btn View More
+                            span.create-time(ng-bind='post.createTime')
+                            span.author by&nbsp;
+                                span(ng-bind='userName')
+                            span.private(ng-bind='post.privacy | privacy')
+                            div.clear
+                            span.tags(ng-bind='post.tags')
+                        p.abstract(ng-bind='post.abstract')
+                        a.more-btn(ng-click='displayPost(post._id)') View More
 block scripts

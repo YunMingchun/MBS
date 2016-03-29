@@ -29,11 +29,12 @@ myboys.directive('blogHeader', function () {
         templateUrl: '/components/blogHeader',
         replace: true,
         controller: function ($scope) {
+            $scope.isBlogNavDisplay = false;
             $scope.back2Home = function () {
                 window.location.href = '/';
             };
-            $scope.displaySubNav = function () {
-
+            $scope.jump2Other = function (url) {
+                window.location.href = '/blogs/' + url;
             };
         }
     }
