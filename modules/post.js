@@ -1,5 +1,6 @@
 var db = require('./db');
 var ObjectId = require('mongodb').ObjectId;
+var Tag = require('./tag');
 
 function Post(post) {
     this.userId = post.userId;
@@ -34,6 +35,19 @@ Post.create = function (post, callback) {
             });
         }
     });
+
+    var tags = post.tags.split(',');
+    for (var i = 0; i < tags.length; i++) {
+        (function (j) {
+            var tag = {
+                userId: post.userId,
+                name: tags[j]
+            };
+            Tag.create(tag, function (resp) {
+                //do Sth.
+            });
+        })(i);
+    }
 };
 
 Post.listByUserId = function (userId, callback) {
