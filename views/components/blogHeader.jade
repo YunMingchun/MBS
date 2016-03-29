@@ -1,0 +1,13 @@
+header#directive-blog-header
+    span.title MBS
+    ul.nav
+        li.item(ng-click='back2Home()') HOME
+        li.item
+            span(ng-click='isBlogNavDisplay=!isBlogNavDisplay') BLOG
+            i.fa.fa-caret-down
+            ul.sub-nav(ng-show='isBlogNavDisplay')
+                li.item ADD
+                li.item LIST
+                li.item DRAFT
+        div.clear
+    div.clear

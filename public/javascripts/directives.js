@@ -3,10 +3,10 @@ myboys.directive('menu', function () {
         restrict: 'E',
         templateUrl: '/components/menu',
         replace: true,
-        controller: function ($scope, $cookies, $location) {
+        controller: function ($scope) {
             $scope.menu_items = [
                 {name: 'My Story', url: '/blogs/list'},
-                {name: 'Drafts', url: '/blogs/draft'},
+                {name: 'Drafts', url: '#'},
                 {name: 'Messages', url: '#'},
                 {name: 'Profile', url: '#'},
                 {name: 'Setting', url: '#'},
@@ -18,6 +18,22 @@ myboys.directive('menu', function () {
             };
             $scope.jump2Other = function (url) {
                 window.location.href = url;
+            };
+        }
+    }
+});
+
+myboys.directive('blogHeader', function () {
+    return {
+        restrict: 'E',
+        templateUrl: '/components/blogHeader',
+        replace: true,
+        controller: function ($scope) {
+            $scope.back2Home = function () {
+                window.location.href = '/';
+            };
+            $scope.displaySubNav = function () {
+
             };
         }
     }

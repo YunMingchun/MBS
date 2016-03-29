@@ -1,18 +1,32 @@
-table#blog-list
-    thead
-        tr
-            td 标题
-            td 创建时间
-            td 可见性
-            td 标签
-            td 操作
-    tbody
-        tr.blog-item(ng-repeat='post in posts track by post._id',ng-if='post.isPublished == 1 && post.inUse == 1')
-            td.title(ng-bind='post.title',ng-click='displayPost(post._id)')
-            td.createTime(ng-bind='post.createTime')
-            td.privacy(ng-bind='post.privacy | privacy')
-            td.tags(ng-bind-html='post.tags | tags')
-            td.ops
-                span.edit(ng-click='editPost(post._id)') 编辑
-                span.delete(ng-click='deletePost(post._id)') 删除
+extends ../template
 
+block links
+    link(rel='stylesheet', href='/stylesheets/blog.css')
+block body
+    blog-header
+    section#blogs-list
+        div.container
+            div.row
+                div.col-md-3
+                    div.widget.tags
+                        h4 TAG CATEGORIES
+                        ul.list
+                            li.item Audio
+                            li.item Creative
+                            li.item Grid
+                div.col-md-9
+                    article.post
+                        h3.post-title The simple Standard Post
+                        div.post-attr
+                            span.create-time 2014 Jun, 14
+                            span.author by Alisia Silverstone in Stories, Games
+                        p.abstract The system utilised prefabricated light gauge steel frames which could be built economically up to a maximum of 4 storeys. The frames were finished in a variety of claddings and their modular nature could be employed to produce architecturally satisfying buildings. Initially developed solely for schools, the system was also used to provide offices and housing. Important examples include many of the Hertfordshire schools, some of which have since been listed.
+                        a.more-btn View More
+                    article.post
+                        h3.post-title The simple Standard Post
+                        div.post-attr
+                            span.create-time 2014 Jun, 14
+                            span.author by Alisia Silverstone in Stories, Games
+                        p.abstract The system utilised prefabricated light gauge steel frames which could be built economically up to a maximum of 4 storeys. The frames were finished in a variety of claddings and their modular nature could be employed to produce architecturally satisfying buildings. Initially developed solely for schools, the system was also used to provide offices and housing. Important examples include many of the Hertfordshire schools, some of which have since been listed.
+                        a.more-btn View More
+block scripts

@@ -14,6 +14,7 @@ ul {
 a, a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
 }
 
 a.btn {
@@ -82,4 +83,11 @@ img.img-block {
     display: block;
     width: 100%;
     height: auto;
+}
+
+section {
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
 }
