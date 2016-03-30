@@ -29,25 +29,16 @@ Post.create = function (post, callback) {
                 'abstract': post.abstract
             }, function (err, resp) {
                 if (!err) {
-                    callback(resp.insertedId);
                     db.close();
+                    callback(resp.insertedId);
+
+                    Tag.create(post.userId, post.tags, function (count) {
+                        console.log('Tag.create count:' + count);
+                    });
                 }
             });
         }
     });
-
-    var tags = post.tags.split(',');
-    for (var i = 0; i < tags.length; i++) {
-        (function (j) {
-            var tag = {
-                userId: post.userId,
-                name: tags[j]
-            };
-            Tag.create(tag, function (resp) {
-                //do Sth.
-            });
-        })(i);
-    }
 };
 
 Post.listByUserId = function (userId, callback) {

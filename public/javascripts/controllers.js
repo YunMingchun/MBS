@@ -146,6 +146,10 @@ myboys.controller('blogListCtrl', function ($scope, $cookies, $http) {
 });
 
 myboys.controller('blogAddCtrl', function ($scope, $http, $cookies) {
+    if (!$cookies.userId) {
+        window.location.href = '/login';
+    }
+
     $scope.userId = $cookies.userId;
     $scope.title = '';
     $scope.options = [
