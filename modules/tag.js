@@ -19,43 +19,28 @@ Tag.create = function (userId, tags, callback) {
             }
         }
 
-        db.open(function (err, db) {
-            if (!err) {
-                db.collection('tags', function (err, collection) {
-                    collection.insertMany(tagsJson, function (err, resp) {
-                        if (!err) {
-                            db.close();
-                            callback(resp.insertedCount);
-                        }
-                    })
-                });
-            }
+        db.collection('tags', function (err, collection) {
+            collection.insertMany(tagsJson, function (err, resp) {
+                if (!err) {
+                    callback(resp.insertedCount);
+                }
+            })
         });
     });
 };
 
 Tag.findByName = function (tagName, callback) {
-    db.open(function (err, db) {
+    db.collection('tags').find({'name': tagName}).toArray(function (err, resp) {
         if (!err) {
-            db.collection('tags').find({'name': tagName}).toArray(function (err, resp) {
-                if (!err) {
-                    db.close();
-                    callback(resp[0]);
-                }
-            });
+            callback(resp[0]);
         }
     });
 };
 
 Tag.findByUserId = function (userId, callback) {
-    db.open(function (err, db) {
+    db.collection('tags').find({'userId': userId}).toArray(function (err, resp) {
         if (!err) {
-            db.collection('tags').find({'userId': userId}).toArray(function (err, resp) {
-                if (!err) {
-                    db.close();
-                    callback(resp);
-                }
-            });
+            callback(resp);
         }
     });
 };

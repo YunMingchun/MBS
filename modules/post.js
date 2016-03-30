@@ -15,93 +15,68 @@ function Post(post) {
 };
 
 Post.create = function (post, callback) {
-    db.open(function (err, db) {
+    db.collection('posts').insertOne({
+        'inUse': 1,
+        'userId': post.userId,
+        'title': post.title,
+        'privacy': post.privacy,
+        'tags': post.tags,
+        'content': post.content,
+        'isPublished': post.isPublished,
+        'createTime': post.createTime,
+        'abstract': post.abstract
+    }, function (err, resp) {
         if (!err) {
-            db.collection('posts').insertOne({
-                'inUse': 1,
-                'userId': post.userId,
-                'title': post.title,
-                'privacy': post.privacy,
-                'tags': post.tags,
-                'content': post.content,
-                'isPublished': post.isPublished,
-                'createTime': post.createTime,
-                'abstract': post.abstract
-            }, function (err, resp) {
-                if (!err) {
-                    db.close();
-                    callback(resp.insertedId);
+            callback(resp.insertedId);
 
-                    Tag.create(post.userId, post.tags, function (count) {
-                        console.log('Tag.create count:' + count);
-                    });
-                }
+            Tag.create(post.userId, post.tags, function (count) {
+                console.log('Tag.create count:' + count);
             });
         }
     });
 };
 
 Post.listByUserId = function (userId, callback) {
-    db.open(function (err, db) {
+    db.collection('posts').find({'userId': userId}).toArray(function (err, resp) {
         if (!err) {
-            db.collection('posts').find({'userId': userId}).toArray(function (err, resp) {
-                if (!err) {
-                    callback(resp);
-                    db.close();
-                }
-            });
+            callback(resp);
         }
     });
 };
 
 Post.findById = function (postId, callback) {
-    db.open(function (err, db) {
+    db.collection('posts').find({'_id': ObjectId(postId)}).toArray(function (err, resp) {
         if (!err) {
-            db.collection('posts').find({'_id': ObjectId(postId)}).toArray(function (err, resp) {
-                if (!err) {
-                    callback(resp[0]);
-                    db.close();
-                }
-            });
+            callback(resp[0]);
         }
     });
 };
 
 Post.deleteById = function (postId, callback) {
-    db.open(function (err, db) {
+    db.collection('posts').updateOne({'_id': ObjectId(postId)}, {
+        $set: {
+            'inUse': 0
+        }
+    }, function (err, resp) {
         if (!err) {
-            db.collection('posts').updateOne({'_id': ObjectId(postId)}, {
-                $set: {
-                    'inUse': 0
-                }
-            }, function (err, resp) {
-                if (!err) {
-                    callback(resp);
-                    db.close();
-                }
-            });
+            callback(resp);
         }
     });
 };
 
 Post.edit = function (post, callback) {
-    db.open(function (err, db) {
+    db.collection('posts').updateOne({'_id': ObjectId(post.postId)}, {
+        $set: {
+            'title': post.title,
+            'privacy': post.privacy,
+            'tags': post.tags,
+            'content': post.content,
+            'updateTime': post.updateTime,
+            'abstract': post.abstract
+        }
+    }, function (err, resp) {
         if (!err) {
-            db.collection('posts').updateOne({'_id': ObjectId(post.postId)}, {
-                $set: {
-                    'title': post.title,
-                    'privacy': post.privacy,
-                    'tags': post.tags,
-                    'content': post.content,
-                    'updateTime': post.updateTime,
-                    'abstract': post.abstract
-                }
-            }, function (err, resp) {
-                if (!err) {
-                    callback(resp);
-                    db.close();
-                }
-            });
+            callback(resp);
         }
     });
 };
