@@ -127,6 +127,10 @@ myboys.controller('homeCtrl', function ($scope, $cookies, $location) {
 });
 
 myboys.controller('blogListCtrl', function ($scope, $cookies, $http) {
+    if (!$cookies.userId) {
+        window.location.href = '/login';
+    }
+
     $scope.userId = $cookies.userId;
     $scope.userName = $cookies.userName;
     $scope.getBlogs = (function () {
@@ -137,11 +141,23 @@ myboys.controller('blogListCtrl', function ($scope, $cookies, $http) {
         }).success(function (resp) {
             if (resp.status == 0) {
                 $scope.posts = resp.posts;
+                $scope.getTags();
             }
         });
     })();
     $scope.displayPost = function (id) {
         window.location.href = '/blogs?postId=' + id;
+    };
+    $scope.getTags = function () {
+        $http.get('/tags/api/list', {
+            params: {
+                userId: $scope.userId
+            }
+        }).success(function (resp) {
+            if (resp.status == 0) {
+                $scope.tags = resp.tags;
+            }
+        });
     };
 });
 
