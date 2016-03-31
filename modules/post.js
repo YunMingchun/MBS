@@ -64,14 +64,25 @@ Post.findById = function (postId, callback) {
     });
 };
 
-Post.deleteById = function (postId, callback) {
-    db.collection('posts').updateOne({'_id': ObjectId(postId)}, {
-        $set: {
-            'inUse': 0
+Post.deleteById = function (userId, postId, callback) {
+    User.findById(userId, function (user) {
+        if (user.isSuper == 1) {
+            db.collection('posts').deleteOne({'_id': ObjectId(postId)}, {}, function (err, resp) {
+                if (!err) {
+                    callback(resp.deletedCount);
+                }
+            });
         }
-    }, function (err, resp) {
-        if (!err) {
-            callback(resp);
+        else {
+            db.collection('posts').updateOne({'_id': ObjectId(postId)}, {
+                $set: {
+                    'inUse': 0
+                }
+            }, function (err, resp) {
+                if (!err) {
+                    callback(resp);
+                }
+            });
         }
     });
 };

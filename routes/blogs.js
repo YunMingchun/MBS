@@ -64,8 +64,9 @@ router.post('/api/edit', function (req, res, next) {
 
 router.post('/api/delete', function (req, res, next) {
     var postId = req.body.postId;
+    var userId = req.body.userId;
 
-    Post.deleteById(postId, function (resp) {
+    Post.deleteById(userId, postId, function (resp) {
         res.json({
             status: 0
         });
