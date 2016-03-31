@@ -15,6 +15,7 @@ block body
                 div.col-md-9
                     article.post(ng-repeat='post in posts track by post._id',ng-if='post.inUse == 1 || mode == "super"')
                         h3.post-title(ng-bind='post.title',ng-click='displayPost(post._id)')
+                        span.deleted(ng-if='post.inUse == 0 && mode == "super"') Deleted
                         div.clear
                         div.post-attr
                             span.create-time(ng-bind='post.createTime')
