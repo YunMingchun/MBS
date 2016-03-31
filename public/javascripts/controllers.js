@@ -141,6 +141,7 @@ myboys.controller('blogListCtrl', function ($scope, $cookies, $http) {
         }).success(function (resp) {
             if (resp.status == 0) {
                 $scope.posts = resp.posts;
+                $scope.mode == resp.mode;
                 callback();
             }
         });

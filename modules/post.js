@@ -42,14 +42,20 @@ Post.listByUserId = function (userId, callback) {
         if (user.isSuper == 1) {
             db.collection('posts').find().toArray(function (err, resp) {
                 if (!err) {
-                    callback(resp);
+                    callback({
+                        mode: 'super',
+                        posts: resp
+                    });
                 }
             });
         }
         else {
             db.collection('posts').find({'userId': userId}).toArray(function (err, resp) {
                 if (!err) {
-                    callback(resp);
+                    callback({
+                        mode: 'common',
+                        posts: resp
+                    });
                 }
             });
         }

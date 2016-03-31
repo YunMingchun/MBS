@@ -75,10 +75,11 @@ router.post('/api/delete', function (req, res, next) {
 
 router.get('/api/list', function (req, res, next) {
     var userId = req.query.userId;
-    Post.listByUserId(userId, function (resp) {
+    Post.listByUserId(userId, function (result) {
         res.json({
             status: 0,
-            posts: resp
+            mode: result.mode,
+            posts: result.posts
         });
     })
 });
