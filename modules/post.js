@@ -16,24 +16,27 @@ function Post(post) {
 };
 
 Post.create = function (post, callback) {
-    db.collection('posts').insertOne({
-        'inUse': 1,
-        'userId': post.userId,
-        'title': post.title,
-        'privacy': post.privacy,
-        'tags': post.tags,
-        'content': post.content,
-        'isPublished': post.isPublished,
-        'createTime': post.createTime,
-        'abstract': post.abstract
-    }, function (err, resp) {
-        if (!err) {
-            callback(resp.insertedId);
+    User.findById(post.userId, function (user) {
+        db.collection('posts').insertOne({
+            'inUse': 1,
+            'userId': post.userId,
+            'title': post.title,
+            'privacy': post.privacy,
+            'tags': post.tags,
+            'content': post.content,
+            'isPublished': post.isPublished,
+            'createTime': post.createTime,
+            'abstract': post.abstract,
+            'author': user.userName
+        }, function (err, resp) {
+            if (!err) {
+                callback(resp.insertedId);
 
-            Tag.create(post.userId, post.tags, function (count) {
-                console.log('Tag.create count:' + count);
-            });
-        }
+                Tag.create(post.userId, post.tags, function (count) {
+                    console.log('Tag.create count:' + count);
+                });
+            }
+        });
     });
 };
 
