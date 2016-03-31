@@ -133,7 +133,7 @@ myboys.controller('blogListCtrl', function ($scope, $cookies, $http) {
 
     $scope.userId = $cookies.userId;
     $scope.userName = $cookies.userName;
-    $scope.getBlogs = (function () {
+    $scope.getBlogs = (function (callback) {
         $http.get('/blogs/api/list', {
             params: {
                 userId: $scope.userId
@@ -141,10 +141,12 @@ myboys.controller('blogListCtrl', function ($scope, $cookies, $http) {
         }).success(function (resp) {
             if (resp.status == 0) {
                 $scope.posts = resp.posts;
-                $scope.getTags();
+                callback();
             }
         });
-    })();
+    })(function () {
+        $scope.getTags();
+    });
     $scope.displayPost = function (id) {
         window.location.href = '/blogs?postId=' + id;
     };
