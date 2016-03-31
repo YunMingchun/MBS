@@ -6,7 +6,6 @@ myboys.directive('menu', function () {
         controller: function ($scope) {
             $scope.menu_items = [
                 {name: 'My Story', url: '/blogs/list'},
-                {name: 'Drafts', url: '#'},
                 {name: 'Messages', url: '#'},
                 {name: 'Profile', url: '#'},
                 {name: 'Setting', url: '#'},

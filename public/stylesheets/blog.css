@@ -121,6 +121,13 @@
         padding: 0px 15px;
         margin: 0 auto;
     }
+
+    #blogs-edit {
+        width: 1170px;
+        box-sizing: border-box;
+        padding: 0px 15px;
+        margin: 0 auto;
+    }
 }
 
 #blogs-list {
@@ -198,7 +205,9 @@
 
 #blogs-add {
     margin-top: 50px;
+    margin-bottom: 30px;
     color: #333333;
+    position: relative;
 }
 
 #blogs-add input.title {
@@ -283,27 +292,36 @@
 }
 
 #blogs-add div.btns {
-    margin-bottom: 10px;
+    position: absolute;
+    top: -40px;
+    right: 15px;
 }
 
 #blogs-add a.btn {
     display: block;
-    float: left;
-    height: 35px;
-    line-height: 35px;
-    width: 70px;
+    height: 30px;
+    line-height: 30px;
+    width: 60px;
     color: #999999;
     font-size: 12px;
-    margin-bottom: 20px;
     box-sizing: border-box;
     border: 1px solid #999999;
     border-radius: 20px;
-    padding: 0px;
-    margin-right: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+#blogs-add a.back2Top {
+    position: absolute;
+    bottom: -30px;
+    right: 15px;
+    line-height: 30px;
+    font-size: 12px;
 }
 
 #blogs-display {
     margin-top: 50px;
+    position: relative;
 }
 
 #blogs-display span.create-time {
@@ -340,4 +358,142 @@
 
 #blogs-display div.head {
     margin-bottom: 15px;
+}
+
+#blogs-display div.btns {
+    position: absolute;
+    top: -40px;
+    right: 15px;
+    overflow: hidden;
+}
+
+#blogs-display a.btn {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    width: 70px;
+    color: #999999;
+    font-size: 12px;
+    box-sizing: border-box;
+    border: 1px solid #999999;
+    border-radius: 20px;
+    padding: 0;
+    float: left;
+    margin-left: 5px;
+}
+
+#blogs-edit {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    color: #333333;
+    position: relative;
+}
+
+#blogs-edit input.title {
+    height: 40px;
+    line-height: 40px;
+    display: block;
+    width: 100%;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+    background-color: #eeeeee;
+    color: #333333;
+    font-size: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 4px;
+}
+
+#blogs-edit textarea.abstract {
+    display: block;
+    width: 100%;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+    background-color: #eeeeee;
+    color: #333333;
+    font-size: 16px;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+#blogs-edit select.privacy {
+    display: block;
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    outline: none;
+    font-size: 14px;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+#blogs-edit input.tag-key {
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    width: 150px;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+    background-color: #eeeeee;
+    color: #333333;
+    font-size: 14px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 4px;
+}
+
+#blogs-edit div.tags {
+    overflow: hidden;
+}
+
+#blogs-edit span.tag {
+    display: block;
+    float: left;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    border: 1px solid #999999;
+    color: #999999;
+    padding: 3px 9px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#blogs-edit div.btns {
+    position: absolute;
+    top: -40px;
+    right: 15px;
+}
+
+#blogs-edit a.btn {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    width: 60px;
+    color: #999999;
+    font-size: 12px;
+    box-sizing: border-box;
+    border: 1px solid #999999;
+    border-radius: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+#blogs-edit a.back2Top {
+    position: absolute;
+    bottom: -30px;
+    right: 15px;
+    line-height: 30px;
+    font-size: 12px;
 }

@@ -15,5 +15,11 @@ block body
             p.abstract(ng-bind='post.abstract')
         div.body
             div.content(ng-bind-html='post.content')
-
+        div.btns
+            a.btn(ng-click='editPost(post._id)')
+                i.fa.fa-pencil.fa-fw
+                span &nbsp;Edit
+            a.btn(ng-click='deletePost(post._id)')
+                i.fa.fa-trash-o.fa-fw
+                span &nbsp;Delete
 block scripts

@@ -10,20 +10,8 @@ router.get('/add', function (req, res, next) {
     res.render('blog/add');
 });
 
-router.get('/recommend', function (req, res, next) {
-    res.render('blog/recommend');
-});
-
-router.get('/hot', function (req, res, next) {
-    res.render('blog/hot');
-});
-
 router.get('/list', function (req, res, next) {
     res.render('blog/list');
-});
-
-router.get('/draft', function (req, res, next) {
-    res.render('blog/draft');
 });
 
 router.get('/display', function (req, res, next) {

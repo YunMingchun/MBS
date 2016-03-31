@@ -1,13 +1,20 @@
-div#edit.form
-    div.form-group
-        input.form-control(type='text',placeholder='请输入标题',ng-model='title')
-    div.form-group
-        select.form-control(ng-options='option.value as option.name for option in options',ng-model='selected')
-    div.form-group
-        input.form-control(type='text',placeholder='请输入标签',ng-keydown='addTag($event)',ng-model='tagKey')
-    div.tags
-        span.tag(ng-repeat='tag in tags track by $index',ng-bind='tag',ng-click='removeTag($index)')
-    summernote(config="config",ng-model='blogContent')
-    div.btns
-        a.btn(ng-click='submit()') 更新
-        a.btn(ng-click='draft()') 保存草稿
+extends ../template
+
+block links
+    link(rel='stylesheet',href='/stylesheets/blog.css')
+    link(href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css",rel="stylesheet")
+block body
+    blog-header
+    div#blogs-edit.form(ng-controller='blogEditCtrl')
+        input.title(type='text',placeholder='请输入标题',ng-model='title')
+        select.privacy(ng-options='option.value as option.name for option in options',ng-model='selected')
+        input.tag-key(type='text',placeholder='请输入标签',ng-keydown='addTag($event)',ng-model='tagKey')
+        div.tags
+            span.tag(ng-repeat='tag in tags track by $index',ng-bind='tag',ng-click='removeTag($index)')
+        textarea.abstract(type='text',placeholder='请输入摘要',ng-model='abstract',rows='7')
+        summernote(config="config",ng-model='blogContent')
+        div.btns
+            a.btn(ng-click='update()') update
+        a.back2Top back 2 top
+block scripts
+    script(src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js")

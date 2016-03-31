@@ -15,8 +15,8 @@ block body
         textarea.abstract(type='text',placeholder='请输入摘要',ng-model='abstract',rows='7')
         summernote(config="config",ng-model='blogContent')
         div.btns
-            a.btn(ng-click='submit()') 提交
-            a.btn(ng-click='draft()') 保存草稿
+            a.btn(ng-click='submit()') submit
+        a.back2Top back 2 top
 
 block scripts
     script(src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js")

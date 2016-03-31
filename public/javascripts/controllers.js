@@ -49,7 +49,7 @@ myboys.controller('loginCtrl', function ($scope, $http, $location, $cookies) {
     $cookies.userName = '';
     $cookies.userId = '';
 
-    $scope.signin = function () {
+    $scope.signIn = function () {
         if ($scope.userName == '' || $scope.password == '') {
             return;
         }
@@ -69,7 +69,7 @@ myboys.controller('loginCtrl', function ($scope, $http, $location, $cookies) {
         });
 
     };
-    $scope.signup = function () {
+    $scope.signUp = function () {
         window.location.href = 'register?preUrl=' + encodeURIComponent($location.absUrl());
     }
 });
@@ -179,7 +179,7 @@ myboys.controller('blogAddCtrl', function ($scope, $http, $cookies) {
     $scope.blogContent = '';
     $scope.abstract = '';
     $scope.config = {
-        height: 700,
+        height: 500,
         focus: true,
         airMode: false,
         toolbar: [
@@ -235,40 +235,21 @@ myboys.controller('blogAddCtrl', function ($scope, $http, $cookies) {
             }
         });
     };
-    $scope.draft = function () {
-        var privacy = ($scope.selected == '0' || $scope.selected == 'public') ? 'public' : 'private';
-        var tags = $scope.tags.join(',');
-        if ($scope.title == '' || $scope.abstract == '') {
-            return;
-        }
 
-        var time = new Date();
-        var year = time.getFullYear();
-        var month = pad0(time.getMonth() + 1);
-        var day = pad0(time.getDate());
-        var hour = pad0(time.getHours());
-
-        $http.post('/blogs/api/add', {
-            userId: $scope.userId,
-            title: $scope.title,
-            privacy: privacy,
-            tags: tags,
-            content: $scope.blogContent,
-            isPublished: 0,
-            createTime: year + '-' + month + '-' + day + ':' + hour,
-            abstract: $scope.abstract
-        }).success(function (resp) {
-            if (resp.status == 0) {
-                window.location.href = '/blogs/draft';
-            }
-        });
-    }
+    //Jquery Helpers
+    $('a.back2Top').click(function () {
+        $('body, html').animate({scrollTop: 0}, 700);
+    });
 });
 
 myboys.controller('blogDisplayCtrl', function ($scope, $location, $http, $cookies) {
+    if (!$cookies.userId) {
+        window.location.href = '/login';
+    }
+
     $scope.post = {};
     $scope.userId = $cookies.userId;
-    console.log($location.search());
+
     $scope.getPost = (function () {
         $http.get('/blogs/api/display', {
             params: {
@@ -281,37 +262,40 @@ myboys.controller('blogDisplayCtrl', function ($scope, $location, $http, $cookie
             }
         });
     })();
-});
-
-function blogListCtrlBackup($scope, $http, $location) {
     $scope.deletePost = function (id) {
         $http.post('/blogs/api/delete', {
             userId: $scope.userId,
             postId: id
         }).success(function (resp) {
             if (resp.status == 0) {
-                window.location.href = '/blog/list';
+                window.location.href = '/blogs/list';
             }
         });
     };
     $scope.editPost = function (id) {
-        $location.path('/blog/edit/' + id);
+        window.location.href = '/blogs/edit?postId=' + id;
     }
-}
+});
 
-function blogRecCtrl($scope) {
-}
+myboys.controller('blogEditCtrl', function ($scope, $http, $cookies, $location) {
+    if (!$cookies.userId) {
+        window.location.href = '/login';
+    }
 
-function blogHotCtrl($scope) {
-}
-
-function postEditCtrl($scope, $http, $routeParams) {
+    $scope.userId = $cookies.userId;
+    $scope.title = '';
     $scope.options = [
+        {name: '选择可见性', value: '0'},
         {name: '公开', value: 'public'},
         {name: '仅自己可见', value: 'private'}
     ];
+    $scope.selected = '0';
+    $scope.tagKey = '';
+    $scope.tags = [];
+    $scope.blogContent = '';
+    $scope.abstract = '';
     $scope.config = {
-        height: 700,
+        height: 500,
         focus: true,
         airMode: false,
         toolbar: [
@@ -330,20 +314,6 @@ function postEditCtrl($scope, $http, $routeParams) {
         ]
     };
 
-    $http.get('/blogs/api/display', {
-        params: {
-            userId: $scope.userId,
-            postId: $routeParams.id
-        }
-    }).success(function (resp) {
-        if (resp.status == 0) {
-            $scope.title = resp.post.title;
-            $scope.selected = resp.post.privacy;
-            $scope.tags = resp.post.tags.split(',');
-            $scope.blogContent = resp.post.content;
-        }
-    });
-
     $scope.addTag = function (e) {
         if (e.keyCode == 13) {
             $scope.tags.push($scope.tagKey);
@@ -353,10 +323,10 @@ function postEditCtrl($scope, $http, $routeParams) {
     $scope.removeTag = function (index) {
         $scope.tags.splice(index, 1);
     };
-    $scope.submit = function () {
-        var privacy = $scope.selected == 'public' ? 'public' : 'private';
+    $scope.update = function () {
+        var privacy = ($scope.selected == '0' || $scope.selected == 'public') ? 'public' : 'private';
         var tags = $scope.tags.join(',');
-        if ($scope.title == '') {
+        if ($scope.title == '' || $scope.abstract == '') {
             return;
         }
 
@@ -368,77 +338,42 @@ function postEditCtrl($scope, $http, $routeParams) {
 
         $http.post('/blogs/api/edit', {
             userId: $scope.userId,
-            postId: $routeParams.id,
+            postId: $location.search().postId,
             title: $scope.title,
             privacy: privacy,
             tags: tags,
             content: $scope.blogContent,
             isPublished: 1,
-            updateTime: year + '-' + month + '-' + day + ':' + hour
+            createTime: year + '-' + month + '-' + day + ':' + hour,
+            abstract: $scope.abstract
         }).success(function (resp) {
             if (resp.status == 0) {
-                window.location.href = '/blog/post/' + $routeParams.id;
+                window.location.href = '/blogs?postId=' + $location.search().postId;
             }
         });
     };
-    $scope.draft = function () {
-        var privacy = $scope.selected == 'public' ? 'public' : 'private';
-        var tags = $scope.tags.join(',');
-        if ($scope.title == '') {
-            return;
-        }
-
-        var time = new Date();
-        var year = time.getFullYear();
-        var month = pad0(time.getMonth() + 1);
-        var day = pad0(time.getDate());
-        var hour = pad0(time.getHours());
-
-        $http.post('/blogs/api/edit', {
-            userId: $scope.userId,
-            postId: $routeParams.id,
-            title: $scope.title,
-            privacy: privacy,
-            tags: tags,
-            content: $scope.blogContent,
-            isPublished: 0,
-            updateTime: year + '-' + month + '-' + day + ':' + hour
+    $scope.getPost = (function () {
+        $http.get('/blogs/api/display', {
+            params: {
+                userId: $scope.userId,
+                postId: $location.search().postId
+            }
         }).success(function (resp) {
             if (resp.status == 0) {
-                window.location.href = '/blog/post/' + $routeParams.id;
+                $scope.title = resp.post.title;
+                $scope.selected = resp.post.privacy;
+                $scope.tags = resp.post.tags.split(',');
+                $scope.blogContent = resp.post.content;
+                $scope.abstract = resp.post.abstract;
             }
         });
-    }
-}
+    })();
 
-function blogDraftCtrl($scope, $http, $location) {
-    $http.get('/blogs/api/list', {
-        params: {
-            userId: $scope.userId
-        }
-    }).success(function (resp) {
-        if (resp.status == 0) {
-            $scope.posts = resp.posts;
-        }
+    //Jquery Helpers
+    $('a.back2Top').click(function () {
+        $('body, html').animate({scrollTop: 0}, 700);
     });
-
-    $scope.displayPost = function (id) {
-        $location.path('/blog/post/' + id);
-    };
-    $scope.deletePost = function (id) {
-        $http.post('/blogs/api/delete', {
-            userId: $scope.userId,
-            postId: id
-        }).success(function (resp) {
-            if (resp.status == 0) {
-                window.location.href = '/blog/list';
-            }
-        });
-    };
-    $scope.editPost = function (id) {
-        $location.path('/blog/edit/' + id);
-    }
-}
+});
 
 /* Helper */
 function pad0(num) {

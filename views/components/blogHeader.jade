@@ -6,8 +6,11 @@ header#directive-blog-header
             span(ng-click='isBlogNavDisplay=!isBlogNavDisplay') BLOG
             i.fa.fa-caret-down
             ul.sub-nav(ng-show='isBlogNavDisplay')
-                li.item(ng-click='jump2Other("add")') ADD
-                li.item(ng-click='jump2Other("list")') LIST
-                li.item(ng-click='jump2Other("draft")') DRAFT
+                li.item(ng-click='jump2Other("add")')
+                    i.fa.fa-pencil.fa-fw
+                    span &nbsp;ADD
+                li.item(ng-click='jump2Other("list")')
+                    i.fa.fa-book.fa-fw
+                    span &nbsp;LIST
         div.clear
     div.clear
